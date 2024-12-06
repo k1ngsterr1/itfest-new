@@ -45,7 +45,7 @@ export function CustomerSatisfactionChart() {
       ref={chartRef}
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-2xl font-bold text-gray-800">
+        <CardTitle className="text-lg md:text-2xl font-bold text-gray-800">
           Customer Satisfaction
         </CardTitle>
         <Button
@@ -57,7 +57,7 @@ export function CustomerSatisfactionChart() {
         </Button>
       </CardHeader>
       <CardContent>
-        <div className="h-[300px]">
+        <div className="h-[200px] md:h-[300px] lg:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
@@ -65,7 +65,7 @@ export function CustomerSatisfactionChart() {
                 cx="50%"
                 cy="50%"
                 labelLine={false}
-                outerRadius={80}
+                outerRadius="70%"
                 fill={orangeColor}
                 dataKey="value"
                 label={({ name, percent }) =>
@@ -80,7 +80,11 @@ export function CustomerSatisfactionChart() {
                 ))}
               </Pie>
               <Tooltip />
-              <Legend />
+              <Legend
+                layout="horizontal"
+                align="center"
+                verticalAlign="bottom"
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>

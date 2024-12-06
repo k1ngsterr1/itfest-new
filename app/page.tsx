@@ -1,14 +1,16 @@
 "use client";
 
-import { CustomerSatisfactionChart } from "@/entities/ui/customer-satisfaction/ui/customer-satisfaction";
-import { FinanceBalanceCard } from "@/entities/ui/finance-balance-card/ui/finance-balance-card";
-import MetricsCards from "@/entities/ui/metrics-card/ui/metrics-card";
-import RecentActivities from "@/entities/ui/recent-activities/ui/recent-activities";
-import TopClients from "@/entities/ui/top-clients/ui/top-clients";
-import { TopProductsCard } from "@/entities/ui/top-products-card/ui/top-products-card";
-import UpcomingTasks from "@/entities/ui/upcoming-tasks/ui/upcoming-tasks";
+import { PopupChatButton } from "@/entities/ui/popup-chat/ui/popup-chat";
+import { AddExpensePopup } from "@/entities/ui/products/add-expense-popup/ui/add-expense-popup";
+import { CustomerSatisfactionChart } from "@/entities/ui/products/customer-satisfaction/ui/customer-satisfaction";
+import { ExpensesTab } from "@/entities/ui/products/expenses-tab/ui/expenses-tab";
+import { FinanceBalanceCard } from "@/entities/ui/products/finance-balance-card/ui/finance-balance-card";
+import RecentActivityTab from "@/entities/ui/products/recent-activities/ui/recent-activities";
+import { TopPerformingCategories } from "@/entities/ui/products/top-product-categories/ui/top-product-categories";
+import { RecentActivity } from "@/entities/ui/products/upcoming-tasks/ui/upcoming-tasks";
 import Header from "@/features/ui/header/ui/header";
 import Sidebar from "@/features/ui/sidebar/ui/sidebar";
+import { PopupProvider, usePopup } from "@/shared/ui/contexts/popup-providers";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 
@@ -43,20 +45,30 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex h-screen overflow-hidden" ref={pageRef}>
-      <Sidebar />
-      <div className="flex-1 overflow-auto">
-        <Header />
-        <main className="p-6">
-          <h1 className="text-3xl font-bold mb-6 text-primary">Dashboard</h1>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <FinanceBalanceCard />
-            <TopProductsCard />
-            <CustomerSatisfactionChart />
-          </div>
-          <div className="grid gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3"></div>
-        </main>
+    <PopupProvider>
+      <div
+        className="flex h-screen overflow-hidden bg-gradient-to-br from-white to-gray-50"
+        ref={pageRef}
+      >
+        <Sidebar />
+        <div className="flex-1 overflow-auto">
+          <Header />
+          <main className="p-6">
+            <h1 className="text-3xl font-bold mb-6 text-primary">Dashboard</h1>
+            <div className="w-full grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+              <FinanceBalanceCard />
+              <CustomerSatisfactionChart />
+              <TopPerformingCategories />
+              <RecentActivityTab />
+            </div>
+            <div className="w-full mt-8">
+              <ExpensesTab />
+            </div>
+          </main>
+        </div>
+        <AddExpensePopup />
+        <PopupChatButton />
       </div>
-    </div>
+    </PopupProvider>
   );
 }
