@@ -18,13 +18,13 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const sidebarItems = [
+
   { name: "Staff", href: "/staff", icon: Users },
   { name: "Products", href: "/products", icon: ShoppingBag },
   { name: "Business Dashboard", href: "/", icon: Briefcase },
   { name: "Technical Performance", href: "/technical", icon: BarChart },
+  { name: "Staff", href: "/staff", icon: Users },
   { name: "AI Report", href: "/report", icon: Bot },
-  { name: "Deals", href: "/deals", icon: Briefcase },
-  { name: "Calendar", href: "/calendar", icon: Calendar },
   { name: "Expenses", href: "/expenses", icon: Calendar },
   { name: "Settings", href: "/settings", icon: Settings },
 ];

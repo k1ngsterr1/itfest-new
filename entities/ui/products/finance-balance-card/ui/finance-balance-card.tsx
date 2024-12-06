@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
 import {
   ResponsiveContainer,
   AreaChart,
@@ -14,13 +15,14 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
 } from "recharts";
+
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+
 import { useTranslation } from "react-i18next";
 
 const data = [
@@ -33,7 +35,7 @@ const data = [
 ];
 
 export function FinanceBalanceCard() {
-  const { t } = useTranslation(); // Initialize translation hook
+  const { t } = useTranslation("finance_balance"); // Use the `finance_balance` namespace
 
   return (
     <Card className="bg-gradient-to-br from-white to-gray-50">
