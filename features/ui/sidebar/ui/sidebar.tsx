@@ -37,10 +37,10 @@ export default function Sidebar() {
 
   return (
     <div
-      className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40"
+      className="hidden border-r   bg-gray-100/40 lg:block dark:bg-gray-800/40"
       ref={sidebarRef}
     >
-      <ScrollArea className="flex h-full w-56 flex-col">
+      <ScrollArea className="flex h-full  border-blue-500 border-[10] flex-col">
         <div className="space-y-4 py-4">
           <div className="px-3 py-2">
             <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight text-primary">
