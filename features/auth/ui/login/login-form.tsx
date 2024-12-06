@@ -9,8 +9,9 @@ import { Input } from '@/components/ui/input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 
+
 const loginSchema = z.object({
-    companyName: z.string().min(2, 'Company name must be at least 2 characters'),
+    email: z.string().email('Please enter a valid email address'),
     password: z.string().min(8, 'Password must be at least 8 characters'),
 })
 
@@ -23,7 +24,7 @@ export function LoginForm() {
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
-            companyName: '',
+            email: '',
             password: '',
         },
     })
@@ -32,7 +33,7 @@ export function LoginForm() {
         setIsLoading(true)
         setError(null)
         try {
-            const response = await fetch('http://localhost:4000/api/users/login', {
+            const response = await fetch('https://itfest-backend-production.up.railway.app/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,14 +41,17 @@ export function LoginForm() {
                 body: JSON.stringify(data),
             })
 
+
             if (!response.ok) {
                 const errorData = await response.json()
                 throw new Error(errorData.message || 'Failed to login')
             }
 
             const result = await response.json()
-            // Handle successful login here
+
             console.log('Login successful:', result)
+
+            window.location.href = '/'
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred during login')
             console.error('Login error:', err)
@@ -75,13 +79,14 @@ export function LoginForm() {
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                             <FormField
                                 control={form.control}
-                                name="companyName"
+                                name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-gray-700">Company Name</FormLabel>
+                                        <FormLabel className="text-gray-700">Email</FormLabel>
                                         <FormControl>
                                             <Input
-                                                placeholder="Acme Inc."
+                                                type="email"
+                                                placeholder="you@example.com"
                                                 {...field}
                                                 className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
                                             />
