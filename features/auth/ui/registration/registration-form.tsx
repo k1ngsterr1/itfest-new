@@ -9,14 +9,16 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
+import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
   companyName: z.string().min(2, 'Company name must be at least 2 characters'),
+  email: z.string().email('Please enter a valid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
   employeeCount: z.enum(['1-5', '6-20', '21-50', '51-200', '201+'], {
     required_error: 'Please select the number of employees',
   }),
-  companyType: z.enum(['startup', 'sme', 'enterprise', 'other'], {
+  type: z.enum(['startup', 'sme', 'enterprise', 'other'], {
     required_error: 'Please select a company type',
   }),
 })
@@ -25,21 +27,23 @@ type FormValues = z.infer<typeof formSchema>
 
 export function RegistrationForm() {
   const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       companyName: '',
+      email: '',
       password: '',
       employeeCount: undefined,
-      companyType: undefined,
+      type: undefined,
     },
   })
 
   async function onSubmit(data: FormValues) {
     setIsLoading(true)
     try {
-      const response = await fetch('http://localhost:4000/api/users/register', {
+      const response = await fetch('https://itfest-backend-production.up.railway.app/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,6 +57,9 @@ export function RegistrationForm() {
 
       const result = await response.json();
       console.log('Registration successful:', result);
+      
+      // Redirect to login page after successful registration
+      router.push('/auth/login');
 
     } catch (error) {
       console.error('Registration error:', error);
@@ -92,6 +99,24 @@ export function RegistrationForm() {
               />
               <FormField
                 control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-gray-700">Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="example@gmail.com"
+                        {...field}
+                        className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
+                      />
+                    </FormControl>
+                    <FormMessage className="text-sm text-red-500 mt-1" />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
@@ -116,7 +141,7 @@ export function RegistrationForm() {
                     <FormLabel className="text-gray-700">Number of Employees</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className="mt-1 block w-full rounded-lg shadow-sm focus:ring focus:ring-opacity-50 flex items-center justify-between">
+                        <SelectTrigger className="mt-1 w-full rounded-lg shadow-sm focus:ring focus:ring-opacity-50 flex items-center justify-between">
                           <SelectValue placeholder="Select employee range" />
                         </SelectTrigger>
                       </FormControl>
@@ -134,7 +159,7 @@ export function RegistrationForm() {
               />
               <FormField
                 control={form.control}
-                name="companyType"
+                name="type"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-gray-700">Company Type</FormLabel>

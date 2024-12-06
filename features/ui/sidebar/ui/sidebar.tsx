@@ -11,9 +11,10 @@ import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const sidebarItems = [
   { name: "Dashboard", href: "/dashboard", icon: BarChart },
-  { name: "Contacts", href: "/contacts", icon: Users },
+  { name: "Staff", href: "/staff", icon: Users },
   { name: "Deals", href: "/deals", icon: Briefcase },
   { name: "Calendar", href: "/calendar", icon: Calendar },
+  { name: "Expenses", href: "/expenses", icon: Calendar },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 
@@ -54,7 +55,7 @@ export default function Sidebar() {
                   className={cn(
                     "w-full justify-start sidebar-item",
                     pathname === item.href &&
-                      "bg-primary text-primary-foreground hover:bg-primary/90"
+                    "bg-primary text-primary-foreground hover:bg-primary/90"
                   )}
                   asChild
                 >
