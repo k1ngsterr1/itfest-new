@@ -18,20 +18,44 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { useTranslation } from "react-i18next";
 
-
 export default function Sidebar() {
   const pathname = usePathname();
   const sidebarRef = useRef(null);
   const { t } = useTranslation("sidebar");
 
   const sidebarItems = [
-    { key: "businessDashboard", name: t("items.businessDashboard"), href: "/", icon: Briefcase },
-    { key: "technicalPerformance", name: t("items.technicalPerformance"), href: "/technical", icon: BarChart },
-    { key: "products", name: t("items.products"), href: "/products", icon: ShoppingBag },
+    {
+      key: "businessDashboard",
+      name: t("items.businessDashboard"),
+      href: "/",
+      icon: Briefcase,
+    },
+    {
+      key: "technicalPerformance",
+      name: t("items.technicalPerformance"),
+      href: "/technical",
+      icon: BarChart,
+    },
+    {
+      key: "products",
+      name: t("items.products"),
+      href: "/products",
+      icon: ShoppingBag,
+    },
     { key: "staff", name: t("items.staff"), href: "/staff", icon: Users },
     { key: "aiReport", name: t("items.aiReport"), href: "/report", icon: Bot },
-    { key: "expenses", name: t("items.expenses"), href: "/expenses", icon: Calendar },
-    { key: "settings", name: t("items.settings"), href: "/settings", icon: Settings },
+    {
+      key: "expenses",
+      name: t("items.expenses"),
+      href: "/expenses",
+      icon: Calendar,
+    },
+    {
+      key: "settings",
+      name: t("items.settings"),
+      href: "/settings",
+      icon: Settings,
+    },
   ];
 
   useEffect(() => {
@@ -67,7 +91,7 @@ export default function Sidebar() {
                   className={cn(
                     "w-full justify-start sidebar-item",
                     pathname === item.href &&
-                    "bg-primary text-primary-foreground hover:bg-primary/90"
+                      "bg-primary text-primary-foreground hover:bg-primary/90"
                   )}
                   asChild
                 >
