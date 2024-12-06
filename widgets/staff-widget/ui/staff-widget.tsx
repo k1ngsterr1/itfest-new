@@ -21,6 +21,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { useUserData } from '@/hooks/useUserData'
 
 interface Employee {
     id: number
@@ -28,9 +29,11 @@ interface Employee {
     name: string
     companyName: string
     salary: string
+    photo: string
 }
 
 export function StaffWidget() {
+    const { userData: companyName } = useUserData('companyName');
     const [employees, setEmployees] = useState<Employee[]>([])
     const [isOpen, setIsOpen] = useState(false)
     const [avatarFile, setAvatarFile] = useState<File | null>(null)
@@ -39,22 +42,27 @@ export function StaffWidget() {
         name: '',
         companyName: '',
         salary: '',
+        photo: '',
     })
 
+
     const fetchEmployees = async () => {
+
+        if (!companyName) return;
+
         try {
-            const response = await fetch('https://itfest-backend-production.up.railway.app/api/employers/get-employers/:companyName',)
+            const response = await fetch(`https://itfest-backend-production.up.railway.app/api/employers/get-employers/${companyName}`)
             if (!response.ok) {
                 throw new Error('Failed to fetch employees')
             }
             const data = await response.json()
+            console.log('Fetched employees data:', data)
             setEmployees(data)
         } catch (error) {
             console.error('Error fetching employees:', error)
         }
     }
 
-    // Fetch employees when component mounts
     useEffect(() => {
         fetchEmployees()
     }, [])
@@ -70,9 +78,11 @@ export function StaffWidget() {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) {
+            console.log('Selected file:', file)
             setAvatarFile(file)
             const reader = new FileReader()
             reader.onloadend = () => {
+                console.log('File read as data URL:', reader.result)
                 setNewEmployee(prev => ({ ...prev, image: reader.result as string }))
             }
             reader.readAsDataURL(file)
@@ -85,6 +95,7 @@ export function StaffWidget() {
         try {
             const formData = new FormData()
             if (avatarFile) {
+                console.log('Uploading avatar file:', avatarFile)
                 formData.append('image', avatarFile)
             }
             formData.append('name', newEmployee.name)
@@ -104,14 +115,25 @@ export function StaffWidget() {
             }
 
             const result = await response.json()
+            console.log('Server response after adding employee:', result)
+
+            // Use the Cloudinary URL directly if it starts with cloudinary, otherwise use the backend URL
+            const imageUrl = result.image?.startsWith('https://res.cloudinary.com')
+                ? result.image
+                : result.image?.startsWith('http')
+                    ? result.image
+                    : `https://itfest-backend-production.up.railway.app${result.image}`
+
+            console.log('Final image URL:', imageUrl)
+
             setEmployees(prev => [...prev, {
                 ...result,
-                image: result.image || newEmployee.image,
+                image: imageUrl,
             }])
 
             setIsOpen(false)
             setAvatarFile(null)
-            setNewEmployee({ image: '', name: '', companyName: '', salary: '' })
+            setNewEmployee({ image: '', name: '', companyName: '', salary: '', photo: '' })
         } catch (error) {
             console.error('Error adding employee:', error)
             // You might want to show an error message to the user here
@@ -223,7 +245,15 @@ export function StaffWidget() {
                             <TableRow key={employee.id}>
                                 <TableCell>
                                     <Avatar>
-                                        <AvatarImage src={employee.image} alt={employee.name} />
+                                        <AvatarImage
+                                            src={employee.image || employee.photo}
+                                            alt={employee.name}
+                                            onError={(e) => {
+                                                console.log('Image failed to load:', employee.image)
+                                                const target = e.target as HTMLImageElement;
+                                                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(employee.name)}`;
+                                            }}
+                                        />
                                         <AvatarFallback>{employee.name.charAt(0)}</AvatarFallback>
                                     </Avatar>
                                 </TableCell>

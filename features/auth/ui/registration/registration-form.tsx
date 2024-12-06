@@ -48,8 +48,9 @@ export function RegistrationForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       });
+
 
       if (!response.ok) {
         throw new Error('Registration failed');
@@ -57,7 +58,9 @@ export function RegistrationForm() {
 
       const result = await response.json();
       console.log('Registration successful:', result);
-      
+
+      localStorage.setItem('companyName', data.companyName);
+
       // Redirect to login page after successful registration
       router.push('/auth/login');
 

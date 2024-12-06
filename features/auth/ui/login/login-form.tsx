@@ -50,6 +50,8 @@ export function LoginForm() {
             const result = await response.json()
 
             console.log('Login successful:', result)
+
+            window.location.href = '/'
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred during login')
             console.error('Login error:', err)
