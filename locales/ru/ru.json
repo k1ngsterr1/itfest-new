@@ -1,0 +1,74 @@
+{
+  "add_expenses": {
+    "addExpense": "Добавить расход",
+    "category": "Категория",
+    "selectCategory": "Выберите категорию",
+    "amount": "Сумма",
+    "enterAmount": "Введите сумму",
+    "rent": "Аренда",
+    "utilities": "Коммунальные услуги",
+    "groceries": "Продукты",
+    "transportation": "Транспорт",
+    "entertainment": "Развлечения",
+    "insurance": "Страхование",
+    "other": "Другое",
+    "addExpenseButton": "Добавить расход"
+  },
+  "customer_satisfaction": {
+    "customerSatisfaction": "Удовлетворенность клиентов",
+    "satisfied": "Довольны",
+    "neutral": "Нейтрально",
+    "unsatisfied": "Недовольны",
+    "tooltipLegend": {
+      "satisfied": "Клиенты, довольные вашими услугами.",
+      "neutral": "Клиенты с нейтральным отзывом.",
+      "unsatisfied": "Клиенты, недовольные вашими услугами."
+    }
+  },
+  "expenses_tab": {
+    "expensesOverview": "Обзор расходов",
+    "selectTimeframe": "Выберите временной интервал",
+    "weekly": "Еженедельно",
+    "monthly": "Ежемесячно",
+    "yearly": "Ежегодно",
+    "addExpense": "Добавить расход",
+    "totalExpenses": "Общие расходы"
+  },
+  "finance_balance": {
+    "financeBalance": "Финансовый баланс",
+    "balanceDescription": "Ваш баланс за последние 6 месяцев",
+    "currentBalance": "Текущий баланс",
+    "lastMonthChange": "+10% от прошлого месяца"
+  },
+  "metrics": {
+    "totalRevenue": "Общий доход",
+    "newLeads": "Новые лиды",
+    "activeDeals": "Активные сделки",
+    "conversionRate": "Конверсия",
+    "changeFromLastMonth": "{{change}} от прошлого месяца"
+  },
+  "top_clients": {
+    "topClients": "Лучшие клиенты",
+    "revenue": "Доход"
+  },
+  "top_product_categories": {
+    "topCategories": "Лучшие категории",
+    "revenue": "Доход",
+    "tooltipRevenue": "${{value}}"
+  },
+  "topProducts": {
+    "title": "Топ 3 продукта",
+    "timeframes": {
+      "daily": "Ежедневно",
+      "weekly": "Еженедельно",
+      "monthly": "Ежемесячно"
+    }
+  },
+  "upcoming_tasks": {
+    "recentActivity": "Недавняя активность",
+    "outgoing": "Исходящие товары",
+    "incoming": "Входящие товары",
+    "quantity": "Кол-во",
+    "minutesAgo": "{{count}} минут назад"
+  }
+}

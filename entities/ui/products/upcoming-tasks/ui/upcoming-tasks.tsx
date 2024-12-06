@@ -2,23 +2,26 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowUp, ArrowDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function RecentActivity() {
+  const { t } = useTranslation(); // Initialize translation hook
+
   const activities = [
     {
-      type: "Outgoing",
+      type: "outgoing",
       product: "Stone Black Jacket",
       price: "$1500",
       quantity: 3,
-      time: "2 minutes ago",
+      time: t("minutesAgo", { count: 2 }),
       icon: <ArrowUp className="text-purple-500" />,
     },
     {
-      type: "Incoming",
+      type: "incoming",
       product: "Capital Creme",
       price: "$1200",
       quantity: 1,
-      time: "5 minutes ago",
+      time: t("minutesAgo", { count: 5 }),
       icon: <ArrowDown className="text-teal-500" />,
     },
   ];
@@ -27,7 +30,7 @@ export function RecentActivity() {
     <Card className="w-full max-w-md rounded-lg bg-white shadow-md">
       <CardHeader className="flex justify-between items-center">
         <CardTitle className="text-lg font-semibold text-gray-900">
-          Recent Activity
+          {t("recentActivity")}
         </CardTitle>
         <button className="text-gray-400 hover:text-gray-600">
           <ArrowUp className="w-5 h-5" />
@@ -43,10 +46,11 @@ export function RecentActivity() {
             {/* Info */}
             <div className="flex-1">
               <p className="text-sm font-medium text-gray-900">
-                {activity.type} products
+                {t(activity.type)}
               </p>
               <p className="text-xs text-gray-500">
-                {activity.product} · Qty: {activity.quantity} · {activity.time}
+                {activity.product} · {t("quantity")}: {activity.quantity} ·{" "}
+                {activity.time}
               </p>
             </div>
             {/* Price */}

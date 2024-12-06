@@ -21,6 +21,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import { useTranslation } from "react-i18next";
 
 const data = [
   { name: "Jan", balance: 5000 },
@@ -32,19 +33,21 @@ const data = [
 ];
 
 export function FinanceBalanceCard() {
+  const { t } = useTranslation(); // Initialize translation hook
+
   return (
     <Card className="bg-gradient-to-br from-white to-gray-50">
       <CardHeader>
-        <CardTitle>Finance Balance</CardTitle>
-        <CardDescription>Your balance over the last 6 months</CardDescription>
+        <CardTitle>{t("financeBalance")}</CardTitle>
+        <CardDescription>{t("balanceDescription")}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">$11,000</div>
-        <p className="text-xs text-green-500">+10% from last month</p>
+        <div className="text-2xl font-bold">{t("currentBalance")}: $11,000</div>
+        <p className="text-xs text-green-500">{t("lastMonthChange")}</p>
         <ChartContainer
           config={{
             balance: {
-              label: "Balance",
+              label: t("currentBalance"),
               color: "hsl(var(--primary))",
             },
           }}

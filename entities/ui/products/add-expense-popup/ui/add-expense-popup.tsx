@@ -14,10 +14,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { usePopup } from "@/shared/ui/contexts/popup-providers";
+import { useTranslation } from "react-i18next";
 
 export function AddExpensePopup() {
   const popupRef = useRef<HTMLDivElement>(null);
   const { isPopupOpen, closePopup } = usePopup();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isPopupOpen) {
@@ -58,7 +60,7 @@ export function AddExpensePopup() {
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gray-800">Add Expense</h2>
+          <h2 className="text-xl font-bold text-gray-800">{t("addExpense")}</h2>
           <Button variant="ghost" size="icon" onClick={closePopup}>
             <X className="h-6 w-6" />
           </Button>
@@ -69,31 +71,35 @@ export function AddExpensePopup() {
           <div className="space-y-4">
             {/* Category Selector */}
             <div>
-              <Label htmlFor="category">Category</Label>
+              <Label htmlFor="category">{t("category")}</Label>
               <Select name="category">
                 <SelectTrigger>
-                  <SelectValue placeholder="Select category" />
+                  <SelectValue placeholder={t("selectCategory")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Rent">Rent</SelectItem>
-                  <SelectItem value="Utilities">Utilities</SelectItem>
-                  <SelectItem value="Groceries">Groceries</SelectItem>
-                  <SelectItem value="Transportation">Transportation</SelectItem>
-                  <SelectItem value="Entertainment">Entertainment</SelectItem>
-                  <SelectItem value="Insurance">Insurance</SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
+                  <SelectItem value="Rent">{t("rent")}</SelectItem>
+                  <SelectItem value="Utilities">{t("utilities")}</SelectItem>
+                  <SelectItem value="Groceries">{t("groceries")}</SelectItem>
+                  <SelectItem value="Transportation">
+                    {t("transportation")}
+                  </SelectItem>
+                  <SelectItem value="Entertainment">
+                    {t("entertainment")}
+                  </SelectItem>
+                  <SelectItem value="Insurance">{t("insurance")}</SelectItem>
+                  <SelectItem value="Other">{t("other")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             {/* Amount Input */}
             <div>
-              <Label htmlFor="amount">Amount</Label>
+              <Label htmlFor="amount">{t("amount")}</Label>
               <Input
                 type="number"
                 id="amount"
                 name="amount"
-                placeholder="Enter amount"
+                placeholder={t("enterAmount")}
                 required
               />
             </div>
@@ -103,7 +109,7 @@ export function AddExpensePopup() {
               type="submit"
               className="w-full bg-[#FC6502] hover:bg-[#e55a00]"
             >
-              Add Expense
+              {t("addExpenseButton")}
             </Button>
           </div>
         </form>

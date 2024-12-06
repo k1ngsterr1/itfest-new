@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const data = [
   { category: "Electronics", revenue: 120000 },
@@ -24,6 +25,7 @@ const data = [
 ];
 
 export function TopPerformingCategories() {
+  const { t } = useTranslation(); // Initialize translation hook
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export function TopPerformingCategories() {
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-xl font-bold text-gray-800">
-          Top Categories
+          {t("topCategories")}
         </CardTitle>
         <Button
           variant="ghost"
@@ -78,7 +80,10 @@ export function TopPerformingCategories() {
               />
               <YAxis dataKey="category" type="category" width={100} />
               <Tooltip
-                formatter={(value) => [`$${value.toLocaleString()}`, "Revenue"]}
+                formatter={(value) => [
+                  `$${value.toLocaleString()}`,
+                  t("revenue"),
+                ]}
                 contentStyle={{
                   backgroundColor: "white",
                   borderColor: "#FC6502",

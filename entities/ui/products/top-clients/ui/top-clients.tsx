@@ -1,5 +1,8 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useTranslation } from "react-i18next";
 
 const clients = [
   { name: "Acme Corp", revenue: "$50,000", avatar: "/avatars/acme.png" },
@@ -9,10 +12,12 @@ const clients = [
 ];
 
 export default function TopClients() {
+  const { t } = useTranslation(); // Initialize translation hook
+
   return (
     <Card className="col-span-1">
       <CardHeader>
-        <CardTitle>Top Clients</CardTitle>
+        <CardTitle>{t("topClients")}</CardTitle>
       </CardHeader>
       <CardContent>
         <ul className="space-y-4">
@@ -25,7 +30,7 @@ export default function TopClients() {
               <div>
                 <p className="font-medium">{client.name}</p>
                 <p className="text-sm text-muted-foreground">
-                  {client.revenue}
+                  {t("revenue")}: {client.revenue}
                 </p>
               </div>
             </li>

@@ -1,0 +1,74 @@
+{
+  "add_expenses": {
+    "addExpense": "Add Expense",
+    "category": "Category",
+    "selectCategory": "Select category",
+    "amount": "Amount",
+    "enterAmount": "Enter amount",
+    "rent": "Rent",
+    "utilities": "Utilities",
+    "groceries": "Groceries",
+    "transportation": "Transportation",
+    "entertainment": "Entertainment",
+    "insurance": "Insurance",
+    "other": "Other",
+    "addExpenseButton": "Add Expense"
+  },
+  "customer_satisfaction": {
+    "customerSatisfaction": "Customer Satisfaction",
+    "satisfied": "Satisfied",
+    "neutral": "Neutral",
+    "unsatisfied": "Unsatisfied",
+    "tooltipLegend": {
+      "satisfied": "Customers satisfied with your service.",
+      "neutral": "Customers with neutral feedback.",
+      "unsatisfied": "Customers dissatisfied with your service."
+    }
+  },
+  "expenses_tab": {
+    "expensesOverview": "Expenses Overview",
+    "selectTimeframe": "Select timeframe",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "addExpense": "Add Expense",
+    "totalExpenses": "Total Expenses"
+  },
+  "finance_balance": {
+    "financeBalance": "Finance Balance",
+    "balanceDescription": "Your balance over the last 6 months",
+    "currentBalance": "Current Balance",
+    "lastMonthChange": "+10% from last month"
+  },
+  "metrics": {
+    "totalRevenue": "Total Revenue",
+    "newLeads": "New Leads",
+    "activeDeals": "Active Deals",
+    "conversionRate": "Conversion Rate",
+    "changeFromLastMonth": "{{change}} from last month"
+  },
+  "top_client": {
+    "topClients": "Top Clients",
+    "revenue": "Revenue"
+  },
+  "top_product_categories": {
+    "topCategories": "Top Categories",
+    "revenue": "Revenue",
+    "tooltipRevenue": "${{value}}"
+  },
+  "topProducts": {
+    "title": "Top 3 Products",
+    "timeframes": {
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
+    }
+  },
+  "upcoming_tasks": {
+    "recentActivity": "Recent Activity",
+    "outgoing": "Outgoing products",
+    "incoming": "Incoming products",
+    "quantity": "Qty",
+    "minutesAgo": "{{count}} minutes ago"
+  }
+}

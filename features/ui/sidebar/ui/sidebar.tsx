@@ -5,14 +5,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
-import { BarChart, Users, Briefcase, Calendar, Settings } from "lucide-react";
+import {
+  BarChart,
+  Users,
+  Briefcase,
+  Calendar,
+  Settings,
+  Bot,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const sidebarItems = [
   { name: "Business Dashboard", href: "/", icon: Briefcase },
   { name: "Technical Performance", href: "/technical", icon: BarChart },
-  { name: "Contacts", href: "/contacts", icon: Users },
+  { name: "AI Report", href: "/report", icon: Bot },
   { name: "Deals", href: "/deals", icon: Briefcase },
   { name: "Calendar", href: "/calendar", icon: Calendar },
   { name: "Settings", href: "/settings", icon: Settings },

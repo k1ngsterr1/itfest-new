@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 const data = [
   {
@@ -30,6 +31,7 @@ const data = [
 ];
 
 export function TopProductsCard() {
+  const { t } = useTranslation(); // Initialize translation hook
   const cardRef = useRef(null);
 
   useEffect(() => {
@@ -61,16 +63,24 @@ export function TopProductsCard() {
     >
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-2xl font-bold text-gray-800">Top 3 Product</h3>
+          <h3 className="text-2xl font-bold text-gray-800">
+            {t("topProducts.title")}
+          </h3>
           <div className="flex items-center space-x-2">
             <Select defaultValue="daily">
               <SelectTrigger className="w-[100px] bg-white border-none shadow-sm">
-                <SelectValue placeholder="Select" />
+                <SelectValue placeholder={t("topProducts.timeframes.daily")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="daily">Daily</SelectItem>
-                <SelectItem value="weekly">Weekly</SelectItem>
-                <SelectItem value="monthly">Monthly</SelectItem>
+                <SelectItem value="daily">
+                  {t("topProducts.timeframes.daily")}
+                </SelectItem>
+                <SelectItem value="weekly">
+                  {t("topProducts.timeframes.weekly")}
+                </SelectItem>
+                <SelectItem value="monthly">
+                  {t("topProducts.timeframes.monthly")}
+                </SelectItem>
               </SelectContent>
             </Select>
             <Button
@@ -113,25 +123,7 @@ export function TopProductsCard() {
                 radius={[6, 6, 0, 0]}
                 className="bar-animate"
                 barSize={50}
-              >
-                {data.map((entry, index) => (
-                  <g key={`cell-${index}`}>
-                    <path
-                      d={`M 0,0 h ${entry.value} v 50 h -${entry.value} z`}
-                      fill="#FC6502"
-                    />
-                    <text
-                      x={25}
-                      y={-25}
-                      fill="#FC6502"
-                      className="text-3xl font-bold value-animate"
-                      textAnchor="middle"
-                    >
-                      {entry.value}
-                    </text>
-                  </g>
-                ))}
-              </Bar>
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>

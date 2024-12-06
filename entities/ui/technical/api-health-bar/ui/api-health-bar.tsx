@@ -14,10 +14,10 @@ type APIEndpoint = {
 
 const apiEndpoints: APIEndpoint[] = [
   { name: "Authentication API", status: "Operational", responseTime: 120 },
-  { name: "Data Processing API", status: "Degraded", responseTime: 350 },
-  { name: "Reporting API", status: "Operational", responseTime: 180 },
+  { name: "Employee API", status: "Degraded", responseTime: 350 },
+  { name: "Profit API", status: "Operational", responseTime: 180 },
   { name: "Notification API", status: "Down", responseTime: 0 },
-  { name: "Search API", status: "Operational", responseTime: 90 },
+  { name: "Website API", status: "Operational", responseTime: 90 },
 ];
 
 const getStatusIcon = (status: APIEndpoint["status"]) => {
