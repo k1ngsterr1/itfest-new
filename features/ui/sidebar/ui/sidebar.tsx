@@ -12,13 +12,14 @@ import {
   Calendar,
   Settings,
   Bot,
+  ShoppingBag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 const sidebarItems = [
-  { name: "Dashboard", href: "/dashboard", icon: BarChart },
   { name: "Staff", href: "/staff", icon: Users },
+  { name: "Products", href: "/products", icon: ShoppingBag },
   { name: "Business Dashboard", href: "/", icon: Briefcase },
   { name: "Technical Performance", href: "/technical", icon: BarChart },
   { name: "AI Report", href: "/report", icon: Bot },
@@ -65,7 +66,7 @@ export default function Sidebar() {
                   className={cn(
                     "w-full justify-start sidebar-item",
                     pathname === item.href &&
-                      "bg-primary text-primary-foreground hover:bg-primary/90"
+                    "bg-primary text-primary-foreground hover:bg-primary/90"
                   )}
                   asChild
                 >
