@@ -26,7 +26,8 @@ import {
 import { Plus, Upload } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-export default function Home() {
+
+export default function ProductsPage() {
     const { t } = useTranslation("products");
     const pageRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
@@ -119,7 +120,38 @@ export default function Home() {
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent className="sm:max-w-[400px] w-full max-h-[80vh] overflow-y-auto overflow-x-hidden">
-                                        <form className="space-y-4  w-[350px]">
+                                        <form className="space-y-4  w-[350px]" onSubmit={async (e) => {
+                                            e.preventDefault();
+                                            const formData = new FormData(e.currentTarget);
+
+                                            try {
+                                                const response = await fetch('https://itfest-backend-production.up.railway.app/api/company/add-profit', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                    },
+                                                    body: JSON.stringify({
+                                                        name: formData.get('name'),
+                                                        price: parseFloat(formData.get('price')),
+                                                        category: formData.get('category'),
+                                                        brand: formData.get('brand'),
+                                                        image: avatarFile ? await convertFileToBase64(avatarFile) : null
+                                                    }),
+                                                });
+
+                                                if (!response.ok) {
+                                                    throw new Error('Failed to add product');
+                                                }
+
+                                                const newProduct = await response.json();
+                                                setData([...data, newProduct]);
+                                                setIsOpen(false);
+                                                setAvatarFile(null);
+                                            } catch (error) {
+                                                console.error('Error adding product:', error);
+                                                // You might want to show an error message to the user here
+                                            }
+                                        }}>
                                             <div className="space-y-2">
                                                 <Label htmlFor="avatar">{t('photo')}</Label>
                                                 <div className="flex items-center justify-center w-full">
@@ -155,6 +187,12 @@ export default function Home() {
                                                             type="file"
                                                             className="hidden"
                                                             accept="image/*"
+                                                            onChange={(e) => {
+                                                                const file = e.target.files?.[0];
+                                                                if (file) {
+                                                                    setAvatarFile(file);
+                                                                }
+                                                            }}
                                                         />
                                                     </label>
                                                 </div>
@@ -202,7 +240,7 @@ export default function Home() {
                                                 type="submit"
                                                 className="w-full"
                                             >
-                                                {t('save')}
+                                                {t('addProduct')}
                                             </Button>
                                         </form>
                                     </DialogContent>

@@ -20,7 +20,6 @@
     "price": "Price",
     "category": "Category",
     "brand": "Brand",
-    "save": "Save",
     "name": "Name"
   },
   "login": {
