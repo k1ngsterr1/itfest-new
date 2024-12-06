@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
 import {
   Card,
   CardContent,
@@ -18,6 +16,11 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 
 const data = [
   { name: "Jan", balance: 5000 },
@@ -29,31 +32,24 @@ const data = [
 ];
 
 export function FinanceBalanceCard() {
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(cardRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 0.5,
-        ease: "power3.out",
-      });
-    }, cardRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <Card ref={cardRef}>
+    <Card className="bg-gradient-to-br from-white to-gray-50">
       <CardHeader>
         <CardTitle>Finance Balance</CardTitle>
         <CardDescription>Your balance over the last 6 months</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">$11,000</div>
-        <p className="text-xs text-muted-foreground">+10% from last month</p>
-        <div className="h-[200px] mt-4">
+        <p className="text-xs text-green-500">+10% from last month</p>
+        <ChartContainer
+          config={{
+            balance: {
+              label: "Balance",
+              color: "hsl(var(--primary))",
+            },
+          }}
+          className="h-[200px] mt-4"
+        >
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={data}
@@ -61,28 +57,32 @@ export function FinanceBalanceCard() {
             >
               <defs>
                 <linearGradient id="colorBalance" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#FC6502" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#FC6502" stopOpacity={0} />
+                  <stop
+                    offset="5%"
+                    stopColor="hsl(var(--primary))"
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="hsl(var(--primary))"
+                    stopOpacity={0}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip
-                contentStyle={{ background: "#fff", border: "1px solid #ccc" }}
-                labelStyle={{ color: "#333" }}
-                itemStyle={{ color: "#FC6502" }}
-              />
+              <ChartTooltip content={<ChartTooltipContent />} />
               <Area
                 type="monotone"
                 dataKey="balance"
-                stroke="#FC6502"
+                stroke="hsl(var(--primary))"
                 fillOpacity={1}
                 fill="url(#colorBalance)"
               />
             </AreaChart>
           </ResponsiveContainer>
-        </div>
+        </ChartContainer>
       </CardContent>
     </Card>
   );

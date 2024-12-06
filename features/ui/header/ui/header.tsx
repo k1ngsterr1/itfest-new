@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 export default function Header() {
   return (
     <header className="bg-white border-b px-4 py-3 flex items-center justify-between">
-      <div className="font-semibold text-lg text-primary">B2B CRM</div>
+      <div className="font-semibold text-lg text-primary">Spark CRM</div>
       <div className="flex items-center space-x-4">
         <Button variant="ghost" size="icon">
           <Bell className="h-5 w-5 text-primary" />

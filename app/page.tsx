@@ -1,8 +1,11 @@
 "use client";
 
+import { CustomerSatisfactionChart } from "@/entities/ui/customer-satisfaction/ui/customer-satisfaction";
+import { FinanceBalanceCard } from "@/entities/ui/finance-balance-card/ui/finance-balance-card";
 import MetricsCards from "@/entities/ui/metrics-card/ui/metrics-card";
 import RecentActivities from "@/entities/ui/recent-activities/ui/recent-activities";
 import TopClients from "@/entities/ui/top-clients/ui/top-clients";
+import { TopProductsCard } from "@/entities/ui/top-products-card/ui/top-products-card";
 import UpcomingTasks from "@/entities/ui/upcoming-tasks/ui/upcoming-tasks";
 import Header from "@/features/ui/header/ui/header";
 import Sidebar from "@/features/ui/sidebar/ui/sidebar";
@@ -47,13 +50,11 @@ export default function Home() {
         <main className="p-6">
           <h1 className="text-3xl font-bold mb-6 text-primary">Dashboard</h1>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <MetricsCards />
+            <FinanceBalanceCard />
+            <TopProductsCard />
+            <CustomerSatisfactionChart />
           </div>
-          <div className="grid gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3">
-            <RecentActivities />
-            <UpcomingTasks />
-            {/* <TopClients /> */}
-          </div>
+          <div className="grid gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3"></div>
         </main>
       </div>
     </div>
