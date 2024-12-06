@@ -19,10 +19,9 @@ import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { useTranslation } from "react-i18next";
 
 const sidebarItems = [
-  { name: "Staff", href: "/staff", icon: Users },
-  { name: "Products", href: "/products", icon: ShoppingBag },
   { name: "Business Dashboard", href: "/", icon: Briefcase },
   { name: "Technical Performance", href: "/technical", icon: BarChart },
+  { name: "Products", href: "/products", icon: ShoppingBag },
   { name: "Staff", href: "/staff", icon: Users },
   { name: "AI Report", href: "/report", icon: Bot },
   { name: "Expenses", href: "/expenses", icon: Calendar },
