@@ -8,18 +8,20 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
-
-
-const loginSchema = z.object({
-    email: z.string().email('Please enter a valid email address'),
-    password: z.string().min(8, 'Password must be at least 8 characters'),
-})
-
-type LoginFormValues = z.infer<typeof loginSchema>
+import { useTranslation } from 'react-i18next';
 
 export function LoginForm() {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
+
+    const { t } = useTranslation('login');
+
+    const loginSchema = z.object({
+        email: z.string().email(t('emailError')),
+        password: z.string().min(8, t('passwordError')),
+    })
+
+    type LoginFormValues = z.infer<typeof loginSchema>
 
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
@@ -40,7 +42,6 @@ export function LoginForm() {
                 },
                 body: JSON.stringify(data),
             })
-
 
             if (!response.ok) {
                 const errorData = await response.json()
@@ -64,9 +65,9 @@ export function LoginForm() {
         <div className="min-h-screen flex items-center justify-center px-6">
             <Card className="w-full max-w-md shadow-lg rounded-lg bg-white">
                 <CardHeader className="space-y-2">
-                    <CardTitle className="text-3xl font-extrabold text-center items-center justify-center flex text-gray-800">Login</CardTitle>
+                    <CardTitle className="text-3xl font-extrabold text-center items-center justify-center flex text-gray-800">{t('title')}</CardTitle>
                     <CardDescription className="text-center text-gray-600">
-                        Enter your company details to log in
+                        {t('description')}
                     </CardDescription>
                     {error && (
                         <p className="text-sm text-red-500 text-center mt-2">
@@ -82,7 +83,7 @@ export function LoginForm() {
                                 name="email"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-gray-700">Email</FormLabel>
+                                        <FormLabel className="text-gray-700">{t('email')}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="email"
@@ -100,7 +101,7 @@ export function LoginForm() {
                                 name="password"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="text-gray-700">Password</FormLabel>
+                                        <FormLabel className="text-gray-700">{t('password')}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="password"
@@ -124,7 +125,7 @@ export function LoginForm() {
                         disabled={isLoading}
                         onClick={form.handleSubmit(onSubmit)}
                     >
-                        {isLoading ? 'Logging in...' : 'Login'}
+                        {isLoading ? t('loggingIn') : t('title')}
                     </Button>
                 </CardFooter>
             </Card>

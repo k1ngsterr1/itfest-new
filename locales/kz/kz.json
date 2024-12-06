@@ -1,0 +1,192 @@
+{
+    "login": {
+        "title": "Кіру",
+        "email": "Электрондық пошта",
+        "password": "Құпия сөз",
+        "loggingIn": "Кіру...",
+        "description": "Кіру үшін компания мәліметтерін енгізіңіз",
+        "emailError": "Жарамды электрондық пошта мекенжайын енгізіңіз",
+        "passwordError": "Құпия сөз кемінде 8 таңбадан тұруы керек"
+    },
+    "registration": {
+        "title": "Компанияны тіркелеңіз",
+        "description": "Компанияның деректерін енгізіңіз аккаунтты құру үшін",
+        "companyName": "Компания атауы",
+        "companyNamePlaceholder": "Acme Inc.",
+        "email": "Электрондық пошта",
+        "emailPlaceholder": "example@gmail.com",
+        "password": "Құпия сөз",
+        "passwordPlaceholder": "********",
+        "employeeCount": "Қызметкерлер саны",
+        "employeeCountPlaceholder": "Қызметкерлер санын таңдаңыз",
+        "companyType": "Компания түрі",
+        "companyTypePlaceholder": "Компания түрін таңдаңыз",
+        "registerButton": "Тіркелу",
+        "registering": "Тіркелуде...",
+        "companyNameError": "Компания атауы кемінде 2 таңбадан тұруы керек",
+        "emailError": "Жарамды электрондық пошта мекенжайын енгізіңіз",
+        "passwordError": "Құпия сөз кемінде 8 таңбадан тұруы керек",
+        "employeeCountError": "Қызметкерлер санын таңдаңыз",
+        "companyTypeError": "Компания түрін таңдаңыз"
+    },
+    "dashboard": {
+        "heading": "Статистика"
+    },
+    "tech_dashboard": {
+        "heading": "Техникалық статистика"
+    },
+    "common_language": {
+        "selectLanguage": "Тілді таңдаңыз"
+    },
+    "sidebar": {
+        "menu": "Мәзір",
+        "items": {
+            "businessDashboard": "Бизнес-панель",
+            "technicalPerformance": "Техникалық өнімділік",
+            "staff": "Қызметкерлер",
+            "aiReport": "AI Есеп",
+            "expenses": "Шығындар",
+            "settings": "Параметрлер",
+            "products": "Өнімдер"
+        }
+    },
+    "add_expenses": {
+        "addExpense": "Шығын қосу",
+        "category": "Санат",
+        "selectCategory": "Санатты таңдаңыз",
+        "amount": "Сома",
+        "enterAmount": "Соманы енгізіңіз",
+        "rent": "Жалдау",
+        "utilities": "Коммуналдық қызметтер",
+        "groceries": "Азық-түлік",
+        "transportation": "Көлік",
+        "entertainment": "Көңіл көтеру",
+        "insurance": "Сақтандыру",
+        "other": "Басқа",
+        "addExpenseButton": "Шығын қосу"
+    },
+    "customer_satisfaction": {
+        "customerSatisfaction": "Клиенттердің қанағаттануы",
+        "satisfied": "Қанағаттанған",
+        "neutral": "Бейтарап",
+        "unsatisfied": "Қанағаттанбаған",
+        "tooltipLegend": {
+            "satisfied": "Қызметтеріңізге қанағаттанған клиенттер.",
+            "neutral": "Бейтарап пікір білдірген клиенттер.",
+            "unsatisfied": "Қызметтеріңізге қанағаттанбаған клиенттер."
+        }
+    },
+    "expenses_tab": {
+        "expensesOverview": "Шығындарға шолу",
+        "selectTimeframe": "Уақыт аралығын таңдаңыз",
+        "weekly": "Апта сайын",
+        "monthly": "Ай сайын",
+        "yearly": "Жыл сайын",
+        "addExpense": "Шығын қосу",
+        "totalExpenses": "Жалпы шығындар"
+    },
+    "finance_balance": {
+        "financeBalance": "Қаржылық баланс",
+        "balanceDescription": "Соңғы 6 айдағы балансыңыз",
+        "currentBalance": "Ағымдағы баланс",
+        "lastMonthChange": "Өткен аймен салыстырғанда +10%"
+    },
+    "metrics": {
+        "totalRevenue": "Жалпы табыс",
+        "newLeads": "Жаңа клиенттер",
+        "activeDeals": "Белсенді мәмілелер",
+        "conversionRate": "Конверсия",
+        "changeFromLastMonth": "Өткен аймен салыстырғанда {{change}}"
+    },
+    "top_clients": {
+        "topClients": "Ең үздік клиенттер",
+        "revenue": "Табыс"
+    },
+    "top_product_categories": {
+        "topCategories": "Ең үздік санаттар",
+        "revenue": "Табыс",
+        "tooltipRevenue": "${{value}}",
+        "categories": {
+            "electronics": "Электроника",
+            "clothing": "Киім",
+            "home_garden": "Үй және бақша",
+            "books": "Кітаптар",
+            "sports": "Спорт"
+        }
+    },
+    "topProducts": {
+        "title": "Ең үздік 3 өнім",
+        "timeframes": {
+            "daily": "Күнделікті",
+            "weekly": "Апта сайын",
+            "monthly": "Ай сайын"
+        }
+    },
+    "upcoming_tasks": {
+        "recentActivity": "Соңғы белсенділік",
+        "activities": {
+            "message": "Хабарлама",
+            "ticket_update": "Тапсырманы жаңарту",
+            "new_customer": "Жаңа клиент",
+            "alert": "Ескерту"
+        },
+        "minutesAgo": "{{count}} минут бұрын"
+    },
+    "api_health_status": {
+        "title": "API күйі",
+        "status": {
+            "operational": "Жұмыс істеп тұр",
+            "degraded": "Іркілістермен",
+            "down": "Жұмыс істемейді"
+        },
+        "responseTime": "Жауап беру уақыты",
+        "endpoints": {
+            "authenticationApi": "Аутентификация API",
+            "employeeApi": "Қызметкерлер API",
+            "profitApi": "Табыс API",
+            "notificationApi": "Хабарландыру API",
+            "websiteApi": "Веб-сайт API"
+        }
+    },
+    "system_performance": {
+        "title": "Жүйе өнімділігін бақылау",
+        "cpuUsage": "CPU қолдану",
+        "memoryUsage": "Жад қолдану",
+        "requestsPerSecond": "Сұраулар/сек",
+        "status": {
+            "high": "Жоғары",
+            "normal": "Қалыпты"
+        }
+    },
+    "recent_tickets": {
+        "title": "TechCRM соңғы тапсырыстары",
+        "tableHeaders": {
+            "ticketId": "Тапсырыс ID",
+            "issue": "Мәселе",
+            "priority": "Маңыздылық",
+            "status": "Күй",
+            "actions": "Әрекеттер"
+        },
+        "priority": {
+            "high": "Жоғары",
+            "medium": "Орташа",
+            "low": "Төмен"
+        },
+        "status": {
+            "open": "Ашық",
+            "inProgress": "Процесте",
+            "resolved": "Шешілді"
+        },
+        "viewLogs": "Журналдарды көру",
+        "ticketLogs": "Тапсырыс журналдары"
+    },
+    "form": {
+        "errors": {
+            "companyNameMin": "Компания атауы кем дегенде 2 таңбадан тұруы керек",
+            "invalidEmail": "Жарамды электрондық пошта мекенжайын енгізіңіз",
+            "passwordMin": "Құпия сөз кем дегенде 8 таңбадан тұруы керек",
+            "selectEmployeeCount": "Қызметкерлер санын таңдаңыз",
+            "selectCompanyType": "Компания түрін таңдаңыз"
+        }
+    }
+}

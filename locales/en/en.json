@@ -1,4 +1,34 @@
 {
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loggingIn": "Logging in...",
+    "description": "Enter your company details to log in",
+    "emailError": "Please enter a valid email address",
+    "passwordError": "Password must be at least 8 characters"
+  },
+  "registration": {
+    "title": "Register Your Company",
+    "description": "Enter your company details to create an account",
+    "companyName": "Company Name",
+    "companyNamePlaceholder": "Acme Inc.",
+    "email": "Email",
+    "emailPlaceholder": "example@gmail.com",
+    "password": "Password",
+    "passwordPlaceholder": "********",
+    "employeeCount": "Number of Employees",
+    "employeeCountPlaceholder": "Select employee range",
+    "companyType": "Company Type",
+    "companyTypePlaceholder": "Select company type",
+    "registerButton": "Register",
+    "registering": "Registering...",
+    "companyNameError": "Company name must be at least 2 characters",
+    "emailError": "Please enter a valid email address",
+    "passwordError": "Password must be at least 8 characters",
+    "employeeCountError": "Please select the number of employees",
+    "companyTypeError": "Please select a company type"
+  },
   "dashboard": {
     "heading": "Dashboard"
   },
@@ -11,7 +41,8 @@
       "staff": "Staff",
       "aiReport": "AI Report",
       "expenses": "Expenses",
-      "settings": "Settings"
+      "settings": "Settings",
+      "products": "Products"
     }
   },
   "tech_dashboard": {
@@ -149,5 +180,14 @@
     },
     "viewLogs": "View Logs",
     "ticketLogs": "Ticket Logs"
+  },
+  "form": {
+    "errors": {
+      "companyNameMin": "Company name must be at least 2 characters",
+      "invalidEmail": "Please enter a valid email address",
+      "passwordMin": "Password must be at least 8 characters",
+      "selectEmployeeCount": "Please select the number of employees",
+      "selectCompanyType": "Please select a company type"
+    }
   }
 }
