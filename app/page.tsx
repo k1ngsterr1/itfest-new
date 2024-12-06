@@ -13,9 +13,11 @@ import Sidebar from "@/features/ui/sidebar/ui/sidebar";
 import { PopupProvider, usePopup } from "@/shared/ui/contexts/popup-providers";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const pageRef = useRef(null);
+  const { t } = useTranslation("dashboard");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -54,7 +56,9 @@ export default function Home() {
         <div className="flex-1 overflow-auto">
           <Header />
           <main className="p-6">
-            <h1 className="text-3xl font-bold mb-6 text-primary">Dashboard</h1>
+            <h1 className="text-3xl font-bold mb-6 text-primary">
+              {t("heading")}
+            </h1>
             <div className="w-full grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               <FinanceBalanceCard />
               <CustomerSatisfactionChart />

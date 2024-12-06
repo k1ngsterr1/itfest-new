@@ -15,19 +15,21 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { useTranslation } from "react-i18next";
 
 const sidebarItems = [
-  { name: "Business Dashboard", href: "/", icon: Briefcase },
-  { name: "Technical Performance", href: "/technical", icon: BarChart },
-  { name: "Staff", href: "/staff", icon: Users },
-  { name: "AI Report", href: "/report", icon: Bot },
-  { name: "Expenses", href: "/expenses", icon: Calendar },
-  { name: "Settings", href: "/settings", icon: Settings },
+  { key: "businessDashboard", href: "/", icon: Briefcase },
+  { key: "technicalPerformance", href: "/technical", icon: BarChart },
+  { key: "staff", href: "/staff", icon: Users },
+  { key: "aiReport", href: "/report", icon: Bot },
+  { key: "expenses", href: "/expenses", icon: Calendar },
+  { key: "settings", href: "/settings", icon: Settings },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
   const sidebarRef = useRef(null);
+  const { t } = useTranslation("sidebar");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -45,19 +47,19 @@ export default function Sidebar() {
 
   return (
     <div
-      className="hidden border-r  w-1/6 bg-gray-100/40 lg:block dark:bg-gray-800/40"
+      className="hidden border-r w-1/6 bg-gray-100/40 lg:block dark:bg-gray-800/40"
       ref={sidebarRef}
     >
       <ScrollArea className="flex h-full flex-col">
         <div className="space-y-4 py-4">
           <div className="px-3 py-2">
             <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight text-primary">
-              Menu
+              {t("menu")}
             </h2>
             <div className="space-y-1">
               {sidebarItems.map((item) => (
                 <Button
-                  key={item.name}
+                  key={item.key}
                   variant={pathname === item.href ? "secondary" : "ghost"}
                   className={cn(
                     "w-full justify-start sidebar-item",
@@ -68,7 +70,7 @@ export default function Sidebar() {
                 >
                   <Link href={item.href}>
                     <item.icon className="mr-2 h-4 w-4" />
-                    {item.name}
+                    {t(`items.${item.key}`)}
                   </Link>
                 </Button>
               ))}

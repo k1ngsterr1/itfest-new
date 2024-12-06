@@ -17,15 +17,15 @@ import { MoreHorizontal } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const data = [
-  { category: "Electronics", revenue: 120000 },
-  { category: "Clothing", revenue: 95000 },
-  { category: "Home & Garden", revenue: 85000 },
-  { category: "Books", revenue: 65000 },
-  { category: "Sports", revenue: 55000 },
+  { category: "electronics", revenue: 120000 },
+  { category: "clothing", revenue: 95000 },
+  { category: "home_garden", revenue: 85000 },
+  { category: "books", revenue: 65000 },
+  { category: "sports", revenue: 55000 },
 ];
 
 export function TopPerformingCategories() {
-  const { t } = useTranslation(); // Initialize translation hook
+  const { t } = useTranslation("top_product_categories"); // Initialize translation with namespace
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -78,10 +78,15 @@ export function TopPerformingCategories() {
                 type="number"
                 tickFormatter={(value) => `$${value / 1000}k`}
               />
-              <YAxis dataKey="category" type="category" width={100} />
+              <YAxis
+                dataKey="category"
+                type="category"
+                width={120}
+                tickFormatter={(value) => t(`categories.${value}`)} // Translate categories
+              />
               <Tooltip
                 formatter={(value) => [
-                  `$${value.toLocaleString()}`,
+                  t("tooltipRevenue", { value: value.toLocaleString() }),
                   t("revenue"),
                 ]}
                 contentStyle={{

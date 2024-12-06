@@ -20,8 +20,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { AddExpensePopup } from "../../add-expense-popup/ui/add-expense-popup";
 import { usePopup } from "@/shared/ui/contexts/popup-providers";
+import { useTranslation } from "react-i18next";
 
 const initialData = [
   { category: "Rent", amount: 1500 },
@@ -37,6 +37,7 @@ export function ExpensesTab() {
   const { openPopup } = usePopup();
   const [data, setData] = useState(initialData);
   const chartRef = useRef(null);
+  const { t } = useTranslation("expenses_tab");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -58,21 +59,21 @@ export function ExpensesTab() {
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-xl font-bold text-gray-800">
-          Expenses Overview
+          {t("expensesOverview")}
         </CardTitle>
         <div className="flex items-center space-x-2">
           <Select defaultValue={timeFrame} onValueChange={setTimeFrame}>
             <SelectTrigger className="w-[120px]">
-              <SelectValue placeholder="Select timeframe" />
+              <SelectValue placeholder={t("selectTimeframe")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="weekly">Weekly</SelectItem>
-              <SelectItem value="monthly">Monthly</SelectItem>
-              <SelectItem value="yearly">Yearly</SelectItem>
+              <SelectItem value="weekly">{t("weekly")}</SelectItem>
+              <SelectItem value="monthly">{t("monthly")}</SelectItem>
+              <SelectItem value="yearly">{t("yearly")}</SelectItem>
             </SelectContent>
           </Select>
           <Button variant="outline" size="sm" onClick={openPopup}>
-            Add Expense
+            {t("addExpense")}
           </Button>
         </div>
       </CardHeader>
@@ -98,7 +99,7 @@ export function ExpensesTab() {
           </ResponsiveContainer>
         </div>
         <div className="mt-4">
-          <h3 className="text-lg font-semibold mb-2">Total Expenses</h3>
+          <h3 className="text-lg font-semibold mb-2">{t("totalExpenses")}</h3>
           <p className="text-2xl font-bold text-[#FC6502]">
             ${data.reduce((sum, item) => sum + item.amount, 0).toLocaleString()}
           </p>

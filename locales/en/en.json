@@ -1,4 +1,24 @@
 {
+  "dashboard": {
+    "heading": "Dashboard"
+  },
+  "sidebar": {
+    "menu": "Menu",
+    "items": {
+      "businessDashboard": "Business Dashboard",
+      "technicalPerformance": "Technical Performance",
+      "staff": "Staff",
+      "aiReport": "AI Report",
+      "expenses": "Expenses",
+      "settings": "Settings"
+    }
+  },
+  "tech_dashboard": {
+    "heading": "Technical Dashboard"
+  },
+  "common_language": {
+    "selectLanguage": "Select Language"
+  },
   "add_expenses": {
     "addExpense": "Add Expense",
     "category": "Category",
@@ -54,7 +74,14 @@
   "top_product_categories": {
     "topCategories": "Top Categories",
     "revenue": "Revenue",
-    "tooltipRevenue": "${{value}}"
+    "tooltipRevenue": "${{value}}",
+    "categories": {
+      "electronics": "Electronics",
+      "clothing": "Clothing",
+      "home_garden": "Home & Garden",
+      "books": "Books",
+      "sports": "Sports"
+    }
   },
   "topProducts": {
     "title": "Top 3 Products",
@@ -66,9 +93,60 @@
   },
   "upcoming_tasks": {
     "recentActivity": "Recent Activity",
-    "outgoing": "Outgoing products",
-    "incoming": "Incoming products",
-    "quantity": "Qty",
+    "activities": {
+      "message": "Message",
+      "ticket_update": "Ticket Update",
+      "new_customer": "New Customer",
+      "alert": "Alert"
+    },
     "minutesAgo": "{{count}} minutes ago"
+  },
+  "api_health_status": {
+    "title": "API Health Status",
+    "status": {
+      "operational": "Operational",
+      "degraded": "Degraded",
+      "down": "Down"
+    },
+    "responseTime": "Response Time",
+    "endpoints": {
+      "authenticationApi": "Authentication API",
+      "employeeApi": "Employee API",
+      "profitApi": "Profit API",
+      "notificationApi": "Notification API",
+      "websiteApi": "Website API"
+    }
+  },
+  "system_performance": {
+    "title": "System Performance Monitor",
+    "cpuUsage": "CPU Usage",
+    "memoryUsage": "Memory Usage",
+    "requestsPerSecond": "Requests/s",
+    "status": {
+      "high": "High",
+      "normal": "Normal"
+    }
+  },
+  "recent_tickets": {
+    "title": "TechCRM Recent Tickets",
+    "tableHeaders": {
+      "ticketId": "Ticket ID",
+      "issue": "Issue",
+      "priority": "Priority",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "priority": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "status": {
+      "open": "Open",
+      "inProgress": "In Progress",
+      "resolved": "Resolved"
+    },
+    "viewLogs": "View Logs",
+    "ticketLogs": "Ticket Logs"
   }
 }

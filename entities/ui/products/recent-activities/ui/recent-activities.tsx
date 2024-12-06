@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -71,6 +72,7 @@ const getActivityColor = (type: Activity["type"]) => {
 };
 
 export default function RecentActivityTab() {
+  const { t } = useTranslation("upcoming_tasks"); // Translation namespace
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -97,7 +99,7 @@ export default function RecentActivityTab() {
   return (
     <Card className="overflow-hidden" ref={cardRef}>
       <CardHeader>
-        <CardTitle>Recent Activity</CardTitle>
+        <CardTitle>{t("recentActivity")}</CardTitle>
       </CardHeader>
       <CardContent className="p-6">
         <div className="space-y-4">
@@ -113,12 +115,19 @@ export default function RecentActivityTab() {
                 {getActivityIcon(activity.type)}
               </Badge>
               <div className="flex-1 space-y-1">
-                <p className="text-sm font-medium">{activity.content}</p>
+                <p className="text-sm font-medium">
+                  {t(`activities.${activity.type}`)}: {activity.content}
+                </p>
                 <div className="flex justify-between items-center">
                   <p className="text-xs text-gray-500">{activity.customer}</p>
                   <div className="flex items-center text-xs text-gray-500">
                     <Clock className="h-3 w-3 mr-1" />
-                    {new Date(activity.timestamp).toLocaleString()}
+                    {t("minutesAgo", {
+                      count: Math.round(
+                        (Date.now() - new Date(activity.timestamp).getTime()) /
+                          60000
+                      ),
+                    })}
                   </div>
                 </div>
               </div>

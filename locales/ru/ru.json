@@ -1,4 +1,24 @@
 {
+  "dashboard": {
+    "heading": "Статистика"
+  },
+  "tech_dashboard": {
+    "heading": "Техническая статистика"
+  },
+  "common_language": {
+    "selectLanguage": "Выберите язык"
+  },
+  "sidebar": {
+    "menu": "Меню",
+    "items": {
+      "businessDashboard": "Бизнес-панель",
+      "technicalPerformance": "Техническая производительность",
+      "staff": "Персонал",
+      "aiReport": "AI Отчет",
+      "expenses": "Расходы",
+      "settings": "Настройки"
+    }
+  },
   "add_expenses": {
     "addExpense": "Добавить расход",
     "category": "Категория",
@@ -54,7 +74,14 @@
   "top_product_categories": {
     "topCategories": "Лучшие категории",
     "revenue": "Доход",
-    "tooltipRevenue": "${{value}}"
+    "tooltipRevenue": "${{value}}",
+    "categories": {
+      "electronics": "Электроника",
+      "clothing": "Одежда",
+      "home_garden": "Дом и сад",
+      "books": "Книги",
+      "sports": "Спорт"
+    }
   },
   "topProducts": {
     "title": "Топ 3 продукта",
@@ -66,9 +93,60 @@
   },
   "upcoming_tasks": {
     "recentActivity": "Недавняя активность",
-    "outgoing": "Исходящие товары",
-    "incoming": "Входящие товары",
-    "quantity": "Кол-во",
+    "activities": {
+      "message": "Сообщение",
+      "ticket_update": "Обновление тикета",
+      "new_customer": "Новый клиент",
+      "alert": "Предупреждение"
+    },
     "minutesAgo": "{{count}} минут назад"
+  },
+  "api_health_status": {
+    "title": "Состояние API",
+    "status": {
+      "operational": "Работает",
+      "degraded": "С перебоями",
+      "down": "Не работает"
+    },
+    "responseTime": "Время отклика",
+    "endpoints": {
+      "authenticationApi": "API Аутентификации",
+      "employeeApi": "API Сотрудников",
+      "profitApi": "API Прибыли",
+      "notificationApi": "API Уведомлений",
+      "websiteApi": "API Сайта"
+    }
+  },
+  "system_performance": {
+    "title": "Мониторинг производительности системы",
+    "cpuUsage": "Использование CPU",
+    "memoryUsage": "Использование памяти",
+    "requestsPerSecond": "Запросы/сек",
+    "status": {
+      "high": "Высокое",
+      "normal": "Нормальное"
+    }
+  },
+  "recent_tickets": {
+    "title": "Последние заявки TechCRM",
+    "tableHeaders": {
+      "ticketId": "ID заявки",
+      "issue": "Проблема",
+      "priority": "Приоритет",
+      "status": "Статус",
+      "actions": "Действия"
+    },
+    "priority": {
+      "high": "Высокий",
+      "medium": "Средний",
+      "low": "Низкий"
+    },
+    "status": {
+      "open": "Открыто",
+      "inProgress": "В процессе",
+      "resolved": "Решено"
+    },
+    "viewLogs": "Просмотреть логи",
+    "ticketLogs": "Логи заявки"
   }
 }

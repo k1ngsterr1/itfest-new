@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, XCircle, AlertTriangle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type APIEndpoint = {
   name: string;
@@ -15,31 +16,31 @@ type APIEndpoint = {
 
 const apiEndpoints: APIEndpoint[] = [
   {
-    name: "Authentication API",
+    name: "authenticationApi",
     url: "https://itfest-backend-production.up.railway.app/api/login",
     status: "Operational",
     responseTime: 0,
   },
   {
-    name: "Employee API",
+    name: "employeeApi",
     url: "https://itfest-backend-production.up.railway.app/api/get-employers/Goida",
     status: "Operational",
     responseTime: 0,
   },
   {
-    name: "Profit API",
+    name: "profitApi",
     url: "https://itfest-backend-production.up.railway.app/api/profits",
     status: "Operational",
     responseTime: 0,
   },
   {
-    name: "Notification API",
+    name: "notificationApi",
     url: "https://itfest-backend-production.up.railway.app/api/notifications",
     status: "Operational",
     responseTime: 0,
   },
   {
-    name: "Website API",
+    name: "websiteApi",
     url: "https://itfest-backend-production.up.railway.app/api/website",
     status: "Operational",
     responseTime: 0,
@@ -69,6 +70,7 @@ const getStatusColor = (status: APIEndpoint["status"]) => {
 };
 
 export default function APIHealthStatus() {
+  const { t } = useTranslation("api_health_status");
   const [endpoints, setEndpoints] = useState<APIEndpoint[]>(apiEndpoints);
   const cardRef = useRef(null);
 
@@ -111,8 +113,7 @@ export default function APIHealthStatus() {
 
     fetchStatus();
 
-    // Optionally, set up polling for real-time updates
-    const interval = setInterval(fetchStatus, 30000); // Poll every 30 seconds
+    const interval = setInterval(fetchStatus, 30000);
     return () => clearInterval(interval);
   }, []);
 
@@ -141,7 +142,7 @@ export default function APIHealthStatus() {
     <Card className="overflow-hidden" ref={cardRef}>
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-techcrm-primary">
-          API Health Status
+          {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -153,11 +154,13 @@ export default function APIHealthStatus() {
             >
               <div className="flex items-center space-x-2">
                 {getStatusIcon(endpoint.status)}
-                <span className="font-medium">{endpoint.name}</span>
+                <span className="font-medium">
+                  {t(`endpoints.${endpoint.name}`)}
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Badge className={`${getStatusColor(endpoint.status)}`}>
-                  {endpoint.status}
+                  {t(`status.${endpoint.status.toLowerCase()}`)}
                 </Badge>
                 <span className="text-sm text-muted-foreground">
                   {endpoint.status !== "Down"

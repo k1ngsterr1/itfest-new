@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -31,6 +32,7 @@ const initialData: PerformanceData[] = Array(20)
   }));
 
 export function SystemPerformanceMonitor() {
+  const { t } = useTranslation("system_performance");
   const [data, setData] = useState<PerformanceData[]>(initialData);
   const cardRef = useRef(null);
 
@@ -75,7 +77,7 @@ export function SystemPerformanceMonitor() {
     <Card ref={cardRef}>
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-primary">
-          System Performance Monitor
+          {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -111,18 +113,20 @@ export function SystemPerformanceMonitor() {
         <div className="mt-4 grid grid-cols-3 gap-4">
           <div>
             <p className="text-sm font-medium text-muted-foreground">
-              CPU Usage
+              {t("cpuUsage")}
             </p>
             <div className="flex items-baseline space-x-2">
               <p className="text-2xl font-bold">{data[data.length - 1].cpu}%</p>
               <Badge className={getStatusColor(data[data.length - 1].cpu, 80)}>
-                {data[data.length - 1].cpu > 80 ? "High" : "Normal"}
+                {data[data.length - 1].cpu > 80
+                  ? t("status.high")
+                  : t("status.normal")}
               </Badge>
             </div>
           </div>
           <div>
             <p className="text-sm font-medium text-muted-foreground">
-              Memory Usage
+              {t("memoryUsage")}
             </p>
             <div className="flex items-baseline space-x-2">
               <p className="text-2xl font-bold">
@@ -131,13 +135,15 @@ export function SystemPerformanceMonitor() {
               <Badge
                 className={getStatusColor(data[data.length - 1].memory, 90)}
               >
-                {data[data.length - 1].memory > 90 ? "High" : "Normal"}
+                {data[data.length - 1].memory > 90
+                  ? t("status.high")
+                  : t("status.normal")}
               </Badge>
             </div>
           </div>
           <div>
             <p className="text-sm font-medium text-muted-foreground">
-              Requests/s
+              {t("requestsPerSecond")}
             </p>
             <p className="text-2xl font-bold">
               {data[data.length - 1].requests}

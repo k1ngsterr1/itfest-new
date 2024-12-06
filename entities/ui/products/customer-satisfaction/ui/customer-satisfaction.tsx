@@ -13,11 +13,12 @@ import {
 } from "recharts";
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const data = [
-  { name: "Satisfied", value: 65 },
-  { name: "Neutral", value: 25 },
-  { name: "Unsatisfied", value: 10 },
+  { name: "satisfied", value: 65 }, // Keys should match translation keys
+  { name: "neutral", value: 25 },
+  { name: "unsatisfied", value: 10 },
 ];
 
 const orangeColor = "#FC6502";
@@ -25,6 +26,7 @@ const COLORS = [orangeColor, "#FFB86C", "#FF8A4C"];
 
 export function CustomerSatisfactionChart() {
   const chartRef = useRef(null);
+  const { t } = useTranslation("customer_satisfaction");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -46,7 +48,7 @@ export function CustomerSatisfactionChart() {
     >
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-lg md:text-2xl font-bold text-gray-800">
-          Customer Satisfaction
+          {t("customerSatisfaction")}
         </CardTitle>
         <Button
           variant="ghost"
@@ -69,7 +71,7 @@ export function CustomerSatisfactionChart() {
                 fill={orangeColor}
                 dataKey="value"
                 label={({ name, percent }) =>
-                  `${name} ${(percent * 100).toFixed(0)}%`
+                  `${t(name)} ${(percent * 100).toFixed(0)}%`
                 }
               >
                 {data.map((entry, index) => (
@@ -79,8 +81,14 @@ export function CustomerSatisfactionChart() {
                   />
                 ))}
               </Pie>
-              <Tooltip />
+              <Tooltip
+                formatter={(value, name) => [
+                  `${value}%`,
+                  t(`tooltipLegend.${name}`),
+                ]}
+              />
               <Legend
+                formatter={(value) => t(value)}
                 layout="horizontal"
                 align="center"
                 verticalAlign="bottom"

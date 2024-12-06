@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 export function AddExpensePopup() {
   const popupRef = useRef<HTMLDivElement>(null);
   const { isPopupOpen, closePopup } = usePopup();
-  const { t } = useTranslation();
+  const { t } = useTranslation("add_expenses");
 
   useEffect(() => {
     if (isPopupOpen) {

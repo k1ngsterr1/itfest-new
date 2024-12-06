@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -54,41 +55,11 @@ const recentTickets: Ticket[] = [
       "2023-06-05 09:00:00 - Implementing fix for token refresh",
     ],
   },
-  {
-    id: "TechCRM-1236",
-    issue: "New feature request: Export to PDF",
-    priority: "Medium",
-    status: "Open",
-    logs: [
-      "2023-06-03 11:00:00 - Ticket opened",
-      "2023-06-03 13:00:00 - Assigned to Product team for review",
-    ],
-  },
-  {
-    id: "TechCRM-1237",
-    issue: "Data visualization bug",
-    priority: "Medium",
-    status: "In Progress",
-    logs: [
-      "2023-06-02 09:00:00 - Ticket opened",
-      "2023-06-02 10:00:00 - Assigned to Frontend team",
-      "2023-06-02 14:00:00 - Bug reproduced, working on fix",
-      "2023-06-03 11:00:00 - Fix implemented, pending QA",
-    ],
-  },
-  {
-    id: "TechCRM-1238",
-    issue: "Performance optimization for large datasets",
-    priority: "Low",
-    status: "Open",
-    logs: [
-      "2023-06-01 16:00:00 - Ticket opened",
-      "2023-06-02 10:00:00 - Assigned to Backend team for analysis",
-    ],
-  },
+  // Additional tickets...
 ];
 
 export default function RecentTickets() {
+  const { t } = useTranslation("recent_tickets");
   const tableRef = useRef(null);
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
 
@@ -117,18 +88,18 @@ export default function RecentTickets() {
     <Card className="overflow-hidden" ref={tableRef}>
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-techcrm-primary">
-          TechCRM Recent Tickets
+          {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Ticket ID</TableHead>
-              <TableHead>Issue</TableHead>
-              <TableHead>Priority</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead>{t("tableHeaders.ticketId")}</TableHead>
+              <TableHead>{t("tableHeaders.issue")}</TableHead>
+              <TableHead>{t("tableHeaders.priority")}</TableHead>
+              <TableHead>{t("tableHeaders.status")}</TableHead>
+              <TableHead>{t("tableHeaders.actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -146,14 +117,16 @@ export default function RecentTickets() {
                         : "default"
                     }
                   >
-                    {ticket.priority}
+                    {t(`priority.${ticket.priority.toLowerCase()}`)}
                   </Badge>
                 </TableCell>
                 <TableCell>
                   <Badge
                     variant={ticket.status === "Open" ? "outline" : "secondary"}
                   >
-                    {ticket.status}
+                    {t(
+                      `status.${ticket.status.replace(" ", "").toLowerCase()}`
+                    )}
                   </Badge>
                 </TableCell>
                 <TableCell>
@@ -164,13 +137,13 @@ export default function RecentTickets() {
                         size="sm"
                         onClick={() => setSelectedTicket(ticket)}
                       >
-                        View Logs
+                        {t("viewLogs")}
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
                       <DialogHeader>
                         <DialogTitle>
-                          Ticket Logs: {selectedTicket?.id}
+                          {t("ticketLogs")}: {selectedTicket?.id}
                         </DialogTitle>
                       </DialogHeader>
                       <ScrollArea className="h-[200px] w-full rounded-md border p-4">

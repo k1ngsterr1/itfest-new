@@ -1,20 +1,22 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import HttpBackend from 'i18next-http-backend';
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
 
 i18n
-  .use(HttpBackend)
-  .use(initReactI18next)
+  .use(LanguageDetector) // Automatically detect language via cookies/localStorage
+  .use(initReactI18next) // Pass i18n instance to react-i18next
   .init({
-    lng: 'en',
-    fallbackLng: 'en',
-    ns: ['common'],
-    defaultNS: 'common',
-    backend: {
-      loadPath: '/locales/{{lng}}/{{lng}}.json',
+    fallbackLng: "en", // Default language
+    supportedLngs: ["en", "ru"], // Supported languages
+    ns: ["common_language"], // Translation namespaces
+    defaultNS: "common_language",
+    resources: {
+      en: require("./locales/en/en.json"),
+      ru: require("./locales/ru/ru.json"),
     },
-    interpolation: {
-      escapeValue: false,
+    detection: {
+      order: ["cookie", "localStorage", "navigator"], // Where to detect the language
+      caches: ["cookie", "localStorage"], // Where to save the language
     },
   });
 
