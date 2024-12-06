@@ -10,24 +10,38 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
+import { DropdownMenu } from '@/components/ui/dropdown-menu';
+import { DropdownMenuLabel } from '@/components/ui/dropdown-menu';
+import { DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenuContent } from '@/components/ui/dropdown-menu';
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import { Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-const formSchema = z.object({
-  companyName: z.string().min(2, 'Company name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
-  employeeCount: z.enum(['1-5', '6-20', '21-50', '51-200', '201+'], {
-    required_error: 'Please select the number of employees',
-  }),
-  type: z.enum(['startup', 'sme', 'enterprise', 'other'], {
-    required_error: 'Please select a company type',
-  }),
-})
-
-type FormValues = z.infer<typeof formSchema>
 
 export function RegistrationForm() {
+  type FormValues = z.infer<typeof formSchema>
   const [isLoading, setIsLoading] = useState(false)
+  const { t, i18n } = useTranslation("registration");
   const router = useRouter()
+
+  const formSchema = z.object({
+    companyName: z.string().min(2, t('companyNameError')),
+    email: z.string().email(t('emailError')),
+    password: z.string().min(8, t('passwordError')),
+    employeeCount: z.enum(['1-5', '6-20', '21-50', '51-200', '201+'], {
+      required_error: t('employeeCountError'),
+    }),
+    type: z.enum(['startup', 'sme', 'enterprise', 'other'], {
+      required_error: t('companyTypeError'),
+    }),
+  })
+
+  const handleLanguageChange = (newLanguage: 'en' | 'ru' | 'kz') => {
+    i18n.changeLanguage(newLanguage)
+    localStorage.setItem('i18nextLng', newLanguage)
+  }
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -61,7 +75,6 @@ export function RegistrationForm() {
 
       localStorage.setItem('companyName', data.companyName);
 
-      // Redirect to login page after successful registration
       router.push('/auth/login');
 
     } catch (error) {
@@ -75,9 +88,11 @@ export function RegistrationForm() {
     <div className="min-h-screen flex items-center justify-center px-6">
       <Card className="w-full max-w-md shadow-lg rounded-lg bg-white">
         <CardHeader className="space-y-2">
-          <CardTitle className="text-3xl font-extrabold text-center items-center justify-center flex text-gray-800">Register Your Company</CardTitle>
+          <CardTitle className="text-3xl font-extrabold text-center items-center justify-center flex text-gray-800">
+            {t('title')}
+          </CardTitle>
           <CardDescription className="text-center text-gray-600">
-            Enter your company details to create an account
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -88,15 +103,17 @@ export function RegistrationForm() {
                 name="companyName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700">Company Name</FormLabel>
+                    <FormLabel className="text-gray-700">
+                      {t('companyName')}
+                    </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Acme Inc."
+                        placeholder={t('companyNamePlaceholder')}
                         {...field}
                         className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
                       />
                     </FormControl>
-                    <FormMessage className="text-sm text-red-500 mt-1" />
+                    <FormMessage className="text-[12px] text-red-500 mt-1" />
                   </FormItem>
                 )}
               />
@@ -105,16 +122,18 @@ export function RegistrationForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700">Email</FormLabel>
+                    <FormLabel className="text-gray-700">
+                      {t('email')}
+                    </FormLabel>
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="example@gmail.com"
+                        placeholder={t('emailPlaceholder')}
                         {...field}
                         className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
                       />
                     </FormControl>
-                    <FormMessage className="text-sm text-red-500 mt-1" />
+                    <FormMessage className="text-[12px] text-red-500 mt-1" />
                   </FormItem>
                 )}
               />
@@ -123,16 +142,18 @@ export function RegistrationForm() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700">Password</FormLabel>
+                    <FormLabel className="text-gray-700">
+                      {t('password')}
+                    </FormLabel>
                     <FormControl>
                       <Input
                         type="password"
-                        placeholder="********"
+                        placeholder={t('passwordPlaceholder')}
                         {...field}
                         className=" w-full border-gray-300 items-center flex justify-center rounded-lg shadow-sm focus:ring focus:ring-opacity-50"
                       />
                     </FormControl>
-                    <FormMessage className="text-sm text-red-500 mt-1" />
+                    <FormMessage className="text-[12px] text-red-500 mt-1" />
                   </FormItem>
                 )}
               />
@@ -141,11 +162,13 @@ export function RegistrationForm() {
                 name="employeeCount"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700">Number of Employees</FormLabel>
+                    <FormLabel className="text-gray-700">
+                      {t('employeeCount')}
+                    </FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger className="mt-1 w-full rounded-lg shadow-sm focus:ring focus:ring-opacity-50 flex items-center justify-between">
-                          <SelectValue placeholder="Select employee range" />
+                          <SelectValue placeholder={t('employeeCountPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -156,7 +179,7 @@ export function RegistrationForm() {
                         <SelectItem value="201+">201+</SelectItem>
                       </SelectContent>
                     </Select>
-                    <FormMessage className="text-sm text-red-500 mt-1" />
+                    <FormMessage className="text-[12px] text-red-500 mt-1" />
                   </FormItem>
                 )}
               />
@@ -165,11 +188,13 @@ export function RegistrationForm() {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-700">Company Type</FormLabel>
+                    <FormLabel className="text-gray-700">
+                      {t('companyType')}
+                    </FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className="mt-1 block w-full rounded-lg shadow-sm focus:ring focus:ring-opacity-50 flex items-center justify-between">
-                          <SelectValue placeholder="Select company type" />
+                        <SelectTrigger className="mt-1 w-full rounded-lg shadow-sm focus:ring focus:ring-opacity-50 flex items-center justify-between">
+                          <SelectValue placeholder={t('companyTypePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -179,22 +204,52 @@ export function RegistrationForm() {
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
-                    <FormMessage className="text-sm text-red-500 mt-1" />
+                    <FormMessage className="text-[12px] text-red-500 mt-1" />
                   </FormItem>
                 )}
               />
             </form>
           </Form>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild className='mt-4'>
+              <Button variant="ghost" size="icon" className="flex gap-2 w-auto px-2">
+                <Globe className="h-4 w-4" />
+                {i18n.language === 'en' ? 'EN' : i18n.language === 'ru' ? 'RU' : 'KZ'}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>{t('common.selectLanguage', 'Select Language')}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
+                <span className={i18n.language === "en" ? "font-bold" : ""}>
+                  EN
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleLanguageChange("ru")}>
+                <span className={i18n.language === "ru" ? "font-bold" : ""}>
+                  RU
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => handleLanguageChange("kz")}>
+                <span className={i18n.language === "kz" ? "font-bold" : ""}>
+                  KZ
+                </span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </CardContent>
-        <CardFooter className="px-6 py-4">
+        <CardFooter className="px-6">
           <Button
             type="submit"
-            className={`w-full py-2 px-4 text-white rounded-lg shadow-md font-semibold ${isLoading ? 'opacity-70 cursor-not-allowed' : ''
+            className={`w-full px-4 text-white rounded-lg shadow-md font-semibold ${isLoading ? 'opacity-70 cursor-not-allowed' : ''
               }`}
             disabled={isLoading}
             onClick={form.handleSubmit(onSubmit)}
           >
-            {isLoading ? 'Registering...' : 'Register'}
+            {isLoading
+              ? t('registering')
+              : t('register')
+            }
           </Button>
         </CardFooter>
       </Card>

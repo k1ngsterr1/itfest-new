@@ -8,7 +8,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") || "en";
+    const savedLanguage = localStorage.getItem("language") || "";
     if (i18n.language !== savedLanguage) {
       i18n.changeLanguage(savedLanguage);
     }

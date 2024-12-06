@@ -1,4 +1,34 @@
 {
+  "login": {
+    "title": "Вход",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "loggingIn": "Вход...",
+    "description": "Введите данные вашей компании для входа",
+    "emailError": "Пожалуйста, введите действительный адрес электронной почты",
+    "passwordError": "Пароль должен содержать не менее 8 символов"
+  },
+  "registration": {
+    "title": "Зарегистрируйте компанию",
+    "description": "Введите данные вашей компании для создания аккаунта",
+    "companyName": "Название компании",
+    "companyNamePlaceholder": "Acme Inc.",
+    "email": "Эл. почта",
+    "emailPlaceholder": "example@gmail.com",
+    "password": "Пароль",
+    "passwordPlaceholder": "********",
+    "employeeCount": "Количество сотрудников",
+    "employeeCountPlaceholder": "Выберите диапазон",
+    "companyType": "Тип компании",
+    "companyTypePlaceholder": "Выберите тип компании",
+    "registerButton": "Зарегистрироваться",
+    "registering": "Регистрация...",
+    "companyNameError": "Название компании должно быть не менее 2 символов",
+    "emailError": "Пожалуйста, введите корректный адрес электронной почты",
+    "passwordError": "Пароль должен быть не менее 8 символов",
+    "employeeCountError": "Пожалуйста, выберите количество сотрудников",
+    "companyTypeError": "Пожалуйста, выберите тип компании"
+  },
   "dashboard": {
     "heading": "Статистика"
   },
@@ -16,7 +46,8 @@
       "staff": "Персонал",
       "aiReport": "AI Отчет",
       "expenses": "Расходы",
-      "settings": "Настройки"
+      "settings": "Настройки",
+      "products": "Товары"
     }
   },
   "add_expenses": {
@@ -148,5 +179,14 @@
     },
     "viewLogs": "Просмотреть логи",
     "ticketLogs": "Логи заявки"
+  },
+  "form": {
+    "errors": {
+      "companyNameMin": "Название компании должно содержать минимум 2 символа",
+      "invalidEmail": "Пожалуйста, введите корректный email адрес",
+      "passwordMin": "Пароль должен содержать минимум 8 символов",
+      "selectEmployeeCount": "Пожалуйста, выберите количество сотрудников",
+      "selectCompanyType": "Пожалуйста, выберите тип компании"
+    }
   }
 }

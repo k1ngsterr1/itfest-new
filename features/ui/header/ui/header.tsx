@@ -18,7 +18,7 @@ export default function Header() {
   const { t, i18n } = useTranslation("common_language");
   const currentLanguage = i18n.language;
 
-  const handleLanguageChange = (lang: "en" | "ru") => {
+  const handleLanguageChange = (lang: "en" | "ru" | "kz") => {
     i18n.changeLanguage(lang);
   };
 
@@ -45,7 +45,6 @@ export default function Header() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {/* Use full key path */}
             <DropdownMenuLabel>{t("selectLanguage")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
@@ -56,6 +55,11 @@ export default function Header() {
             <DropdownMenuItem onClick={() => handleLanguageChange("ru")}>
               <span className={currentLanguage === "ru" ? "font-bold" : ""}>
                 RU
+              </span>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => handleLanguageChange("kz")}>
+              <span className={currentLanguage === "kz" ? "font-bold" : ""}>
+                KZ
               </span>
             </DropdownMenuItem>
           </DropdownMenuContent>
