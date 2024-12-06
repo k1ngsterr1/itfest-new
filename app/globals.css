@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --primary: 24 96% 50%;
+  --primary-foreground: 0 0% 100%;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.dark {
+  --primary: 24 96% 50%;
+  --primary-foreground: 0 0% 100%;
 }
 
 @layer base {
-  :root {
-    --radius: 0.5rem;
+  body {
+    @apply bg-background text-foreground;
   }
 }
