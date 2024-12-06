@@ -18,6 +18,7 @@ type LoginFormValues = z.infer<typeof loginSchema>
 
 export function LoginForm() {
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
@@ -29,9 +30,30 @@ export function LoginForm() {
 
     async function onSubmit(data: LoginFormValues) {
         setIsLoading(true)
-        console.log(data)
-        await new Promise(resolve => setTimeout(resolve, 2000)) // Simulate API call
-        setIsLoading(false)
+        setError(null)
+        try {
+            const response = await fetch('http://localhost:4000/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+
+            if (!response.ok) {
+                const errorData = await response.json()
+                throw new Error(errorData.message || 'Failed to login')
+            }
+
+            const result = await response.json()
+            // Handle successful login here
+            console.log('Login successful:', result)
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'An error occurred during login')
+            console.error('Login error:', err)
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -42,6 +64,11 @@ export function LoginForm() {
                     <CardDescription className="text-center text-gray-600">
                         Enter your company details to log in
                     </CardDescription>
+                    {error && (
+                        <p className="text-sm text-red-500 text-center mt-2">
+                            {error}
+                        </p>
+                    )}
                 </CardHeader>
                 <CardContent>
                     <Form {...form}>
