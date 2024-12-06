@@ -12,18 +12,21 @@ import {
   Calendar,
   Settings,
   Bot,
+  ShoppingBag,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { useTranslation } from "react-i18next";
 
 const sidebarItems = [
-  { key: "businessDashboard", href: "/", icon: Briefcase },
-  { key: "technicalPerformance", href: "/technical", icon: BarChart },
-  { key: "staff", href: "/staff", icon: Users },
-  { key: "aiReport", href: "/report", icon: Bot },
-  { key: "expenses", href: "/expenses", icon: Calendar },
-  { key: "settings", href: "/settings", icon: Settings },
+  { name: "Staff", href: "/staff", icon: Users },
+  { name: "Products", href: "/products", icon: ShoppingBag },
+  { name: "Business Dashboard", href: "/", icon: Briefcase },
+  { name: "Technical Performance", href: "/technical", icon: BarChart },
+  { name: "Staff", href: "/staff", icon: Users },
+  { name: "AI Report", href: "/report", icon: Bot },
+  { name: "Expenses", href: "/expenses", icon: Calendar },
+  { name: "Settings", href: "/settings", icon: Settings },
 ];
 
 export default function Sidebar() {

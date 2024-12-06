@@ -18,23 +18,25 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const brands = ["Nike", "Adidas", "Puma", "Reebok", "Under Armour"]
 
+const categories = ["sneakers", "clothes"]
+
 const products = [
-    { id: 1, name: "Air Max 90", brand: "Nike", type: "sneakers", price: 129.99, image: "/placeholder.svg" },
-    { id: 2, name: "Ultraboost", brand: "Adidas", type: "sneakers", price: 179.99, image: "/placeholder.svg" },
-    { id: 3, name: "RS-X", brand: "Puma", type: "sneakers", price: 109.99, image: "/placeholder.svg" },
-    { id: 4, name: "Classic Leather", brand: "Reebok", type: "sneakers", price: 74.99, image: "/placeholder.svg" },
-    { id: 5, name: "HOVR Phantom", brand: "Under Armour", type: "sneakers", price: 139.99, image: "/placeholder.svg" },
-    { id: 6, name: "Tech Fleece Hoodie", brand: "Nike", type: "clothes", price: 109.99, image: "/placeholder.svg" },
-    { id: 7, name: "Trefoil Tee", brand: "Adidas", type: "clothes", price: 29.99, image: "/placeholder.svg" },
-    { id: 8, name: "Essentials Sweatpants", brand: "Puma", type: "clothes", price: 49.99, image: "/placeholder.svg" },
-    { id: 9, name: "Vector Jacket", brand: "Reebok", type: "clothes", price: 69.99, image: "/placeholder.svg" },
-    { id: 10, name: "Rival Fleece Shorts", brand: "Under Armour", type: "clothes", price: 39.99, image: "/placeholder.svg" },
+    { id: 1, name: "Air Max 90", brand: "Nike", category: "sneakers", price: 129.99, image: "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/7c5678f4-c28d-4862-a8d9-56750f839f12/air-max-90-shoes-kRsBnD.png" },
+    { id: 2, name: "Ultraboost", brand: "Adidas", category: "sneakers", price: 179.99, image: "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3d0933f855c445fea224aad600d85ead_9366/Ultraboost_Light_Shoes_Black_FX8923_01_standard.jpg" },
+    { id: 3, name: "RS-X", brand: "Puma", category: "sneakers", price: 109.99, image: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/374915/01/sv01/fnd/IND/fmt/png/RS-X-Geek-Sneakers" },
+    { id: 4, name: "Classic Leather", brand: "Reebok", category: "sneakers", price: 74.99, image: "https://assets.reebok.com/images/w_600,f_auto,q_auto/24043dba0e484434aba3aae80191b9c5_9366/Classic_Leather_Shoes_White_ID2154_01_standard.jpg" },
+    { id: 5, name: "HOVR Phantom", brand: "Under Armour", category: "sneakers", price: 139.99, image: "https://underarmour.scene7.com/is/image/Underarmour/3024152-002_DEFAULT?rp=standard-0pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640" },
+    { id: 6, name: "Tech Fleece Hoodie", brand: "Nike", category: "clothes", price: 109.99, image: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/7bac6eaa-9de6-4c04-9baa-9fc5c8778fad/sportswear-tech-fleece-mens-full-zip-hoodie-5ZtTtk.png" },
+    { id: 7, name: "Trefoil Tee", brand: "Adidas", category: "clothes", price: 29.99, image: "https://assets.adidas.com/images/w_600,f_auto,q_auto/fb35807c75bb4185ba60aae800f3f4cf_9366/Trefoil_T-Shirt_Black_GN3462_01_laydown.jpg" },
+    { id: 8, name: "Essentials Sweatpants", brand: "Puma", category: "clothes", price: 49.99, image: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/586748/01/mod01/fnd/IND/fmt/png/Essentials-Logo-Men's-Sweatpants" },
+    { id: 9, name: "Vector Jacket", brand: "Reebok", category: "clothes", price: 69.99, image: "https://assets.reebok.com/images/w_600,f_auto,q_auto/cd34290e1b57479399f3acf301607408_9366/Classics_Vector_Track_Jacket_Black_FJ3172_01_standard.jpg" },
+    { id: 10, name: "Rival Fleece Shorts", brand: "Under Armour", category: "clothes", price: 39.99, image: "https://underarmour.scene7.com/is/image/Underarmour/1361631-001_DEFAULT?rp=standard-0pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640" },
 ]
 
 export default function Home() {
     const [cartCount, setCartCount] = useState(0)
     const [selectedBrand, setSelectedBrand] = useState("All")
-    const [selectedType, setSelectedType] = useState("all")
+    const [selectedCategory, setSelectedCategory] = useState("all")
     const [cartTotal, setCartTotal] = useState(0)
 
     const addToCart = (price: number) => {
@@ -44,7 +46,7 @@ export default function Home() {
 
     const filteredProducts = products.filter(product =>
         (selectedBrand === "All" || product.brand === selectedBrand) &&
-        (selectedType === "all" || product.type === selectedType)
+        (selectedCategory === "all" || product.category === selectedCategory)
     )
 
     return (
@@ -75,7 +77,7 @@ export default function Home() {
                         </div>
                         {cartCount > 0 && (
                             <Button asChild>
-                                <Link href="/store/payment">
+                                <Link href={`/store/payment?total=${cartTotal.toFixed(2)}`}>
                                     Pay ${cartTotal.toFixed(2)}
                                 </Link>
                             </Button>
@@ -99,7 +101,7 @@ export default function Home() {
                     <div className="container mx-auto px-4">
                         <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
                         <div className="flex justify-center mb-8">
-                            <Tabs defaultValue="all" className="w-full max-w-md" onValueChange={setSelectedType}>
+                            <Tabs defaultValue="all" className="w-full max-w-md" onValueChange={setSelectedCategory}>
                                 <TabsList className="grid w-full grid-cols-3">
                                     <TabsTrigger value="all">All</TabsTrigger>
                                     <TabsTrigger value="sneakers">Sneakers</TabsTrigger>
@@ -195,11 +197,10 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="mt-8 text-center text-sm">
-                        © 2023 FashionStore. All rights reserved.
+                        2023 FashionStore. All rights reserved.
                     </div>
                 </div>
             </footer>
         </div>
     )
 }
-

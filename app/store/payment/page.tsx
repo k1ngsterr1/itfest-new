@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { CreditCard, ArrowLeft, Check } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -18,13 +18,22 @@ import {
 
 const paymentMethods = [
     { id: 'card', name: 'Credit Card', icon: CreditCard },
-    { id: 'paypal', name: 'PayPal', icon: () => <span className="text-blue-500 font-bold">PayPal</span> },
+    { id: 'paypal', name: 'PayPal' },
 ]
 
 export default function PaymentPage() {
     const router = useRouter()
+    const searchParams = useSearchParams()
     const [paymentMethod, setPaymentMethod] = useState('card')
     const [showDialog, setShowDialog] = useState(false)
+    const [total, setTotal] = useState('0.00')
+
+    useEffect(() => {
+        const totalFromUrl = searchParams.get('total')
+        if (totalFromUrl) {
+            setTotal(totalFromUrl)
+        }
+    }, [searchParams])
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -39,7 +48,7 @@ export default function PaymentPage() {
     return (
         <div className="min-h-screen bg-gray-100 py-12">
             <div className="container mx-auto px-4">
-                <Link href="/store" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6">
+                <Link href="/store" className="inline-flex items-center mb-6">
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back to Store
                 </Link>
@@ -50,7 +59,7 @@ export default function PaymentPage() {
                             <div className="space-y-4">
                                 <div>
                                     <Label htmlFor="total">Total Amount</Label>
-                                    <Input id="total" value="$99.99" readOnly />
+                                    <Input id="total" value={`$${total}`} readOnly />
                                 </div>
                                 <div>
                                     <Label>Payment Method</Label>
@@ -59,7 +68,6 @@ export default function PaymentPage() {
                                             <div key={method.id} className="flex items-center space-x-2">
                                                 <RadioGroupItem value={method.id} id={method.id} />
                                                 <Label htmlFor={method.id} className="flex items-center">
-                                                    <method.icon className="mr-2 h-4 w-4" />
                                                     {method.name}
                                                 </Label>
                                             </div>
