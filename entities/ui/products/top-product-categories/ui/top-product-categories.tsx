@@ -25,7 +25,7 @@ const data = [
 ];
 
 export function TopPerformingCategories() {
-  const { t } = useTranslation("top_product_categories"); // Initialize translation with namespace
+  const { t } = useTranslation("top_product_categories");
   const chartRef = useRef(null);
 
   useEffect(() => {

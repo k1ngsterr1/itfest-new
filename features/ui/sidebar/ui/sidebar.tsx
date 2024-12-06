@@ -24,8 +24,6 @@ const sidebarItems = [
   { name: "Products", href: "/products", icon: ShoppingBag },
   { name: "Staff", href: "/staff", icon: Users },
   { name: "AI Report", href: "/report", icon: Bot },
-  { name: "Expenses", href: "/expenses", icon: Calendar },
-  { name: "Settings", href: "/settings", icon: Settings },
 ];
 
 export default function Sidebar() {
