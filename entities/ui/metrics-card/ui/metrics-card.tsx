@@ -42,7 +42,7 @@ export default function MetricsCards() {
   return (
     <div ref={cardsRef}>
       {metrics.map((metric) => (
-        <Card key={metric.title} className="metrics-card">
+        <Card key={metric.title} className="metrics-card ">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               {metric.title}
