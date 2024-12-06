@@ -1,4 +1,5 @@
 import "./globals.css";
+import { I18nProvider } from "@/providers/i18n-provider";
 
 export const metadata = {
   title: "Next.js",
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <I18nProvider>{children}</I18nProvider>
+      </body>
     </html>
   );
 }

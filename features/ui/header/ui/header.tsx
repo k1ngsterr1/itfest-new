@@ -15,11 +15,12 @@ import spark from "@/assets/logo.svg";
 import { useTranslation } from "react-i18next";
 
 export default function Header() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
   const handleLanguageChange = (lang: "en" | "ru") => {
-    i18n.changeLanguage(lang); // Change language in i18next
+    i18n.changeLanguage(lang);
+    localStorage.setItem('language', lang);
   };
 
   return (
@@ -41,16 +42,16 @@ export default function Header() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Select Language</DropdownMenuLabel>
+            <DropdownMenuLabel>{t('common.selectLanguage')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => handleLanguageChange("en")}>
               <span className={currentLanguage === "en" ? "font-bold" : ""}>
-                English
+                {t('common.english')}
               </span>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => handleLanguageChange("ru")}>
               <span className={currentLanguage === "ru" ? "font-bold" : ""}>
-                Русский
+                {t('common.russian')}
               </span>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -62,11 +63,11 @@ export default function Header() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{t('common.myAccount')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Log out</DropdownMenuItem>
+            <DropdownMenuItem>{t('common.profile')}</DropdownMenuItem>
+            <DropdownMenuItem>{t('common.settings')}</DropdownMenuItem>
+            <DropdownMenuItem>{t('common.logout')}</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
