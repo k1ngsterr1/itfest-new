@@ -52,7 +52,12 @@ export function LoginForm() {
 
             console.log('Login successful:', result)
 
-            window.location.href = '/'
+            // Save the current language before navigation
+            const currentLang = localStorage.getItem('language') || 'en';
+            localStorage.setItem('language', currentLang);
+
+            // Use proper client-side navigation
+            window.location.href = `/?lang=${currentLang}`;
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred during login')
             console.error('Login error:', err)

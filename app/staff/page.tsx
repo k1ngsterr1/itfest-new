@@ -5,8 +5,10 @@ import Header from "@/features/ui/header/ui/header";
 import Sidebar from "@/features/ui/sidebar/ui/sidebar";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function StaffPage() {
+    const { t } = useTranslation("staff");
     const pageRef = useRef(null);
 
     useEffect(() => {
@@ -42,11 +44,10 @@ export default function StaffPage() {
             <div className="flex-1 overflow-auto">
                 <Header />
                 <main className="p-6">
-                    <h1 className="text-3xl font-bold mb-6 text-primary">Staff</h1>
+                    <h1 className="text-3xl font-bold mb-6 text-primary">{t("heading")}</h1>
                     <div className="gap-6">
                         <StaffWidget />
                     </div>
-                    <div className="grid gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3"></div>
                 </main>
             </div>
         </div>

@@ -24,8 +24,10 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Plus, Upload } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
+    const { t } = useTranslation("products");
     const pageRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const [editingProduct, setEditingProduct] = useState(null);
@@ -94,7 +96,7 @@ export default function Home() {
                 <div className="flex-1 overflow-auto">
                     <Header />
                     <main className="p-6">
-                        <h1 className="text-3xl font-bold mb-6 text-primary">Products</h1>
+                        <h1 className="text-3xl font-bold mb-6 text-primary">{t('title')}</h1>
                         <div className="w-full p-6 space-y-4">
                             <div className="flex items-center justify-between">
                                 <Dialog
@@ -113,20 +115,13 @@ export default function Home() {
                                             }}
                                         >
                                             <Plus className="mr-2 h-4 w-4" />
-                                            Добавить товар
+                                            {t('addProduct')}
                                         </Button>
                                     </DialogTrigger>
                                     <DialogContent className="sm:max-w-[400px] w-full max-h-[80vh] overflow-y-auto overflow-x-hidden">
-                                        <DialogHeader>
-                                            <DialogTitle>
-                                                {editingProduct
-                                                    ? "Редактировать товар"
-                                                    : "Добавить новый товар"}
-                                            </DialogTitle>
-                                        </DialogHeader>
                                         <form className="space-y-4  w-[350px]">
                                             <div className="space-y-2">
-                                                <Label htmlFor="avatar">Фото</Label>
+                                                <Label htmlFor="avatar">{t('photo')}</Label>
                                                 <div className="flex items-center justify-center w-full">
                                                     <label
                                                         htmlFor="avatar"
@@ -148,10 +143,10 @@ export default function Home() {
                                                             <div className="flex flex-col items-center justify-center w-full">
                                                                 <Upload className="w-8 h-8 mb-4 text-gray-500" />
                                                                 <p className="mb-2 text-sm text-gray-500">
-                                                                    Нажмите для загрузки или перетащите
+                                                                    {t('loadPhoto')}
                                                                 </p>
                                                                 <p className="text-xs text-gray-500">
-                                                                    SVG, PNG, JPG или GIF (MAX. 800x400px)
+                                                                    {t('dataType')}
                                                                 </p>
                                                             </div>
                                                         )}
@@ -165,7 +160,7 @@ export default function Home() {
                                                 </div>
                                             </div>
                                             <div className="space-y-2">
-                                                <Label htmlFor="name">Название товара</Label>
+                                                <Label htmlFor="name">{t('productName')}</Label>
                                                 <Input
                                                     id="name"
                                                     name="name"
@@ -175,7 +170,7 @@ export default function Home() {
 
 
                                             <div className="space-y-2">
-                                                <Label htmlFor="price">Цена</Label>
+                                                <Label htmlFor="price">{t('price')}</Label>
                                                 <Input
                                                     id="price"
                                                     name="price"
@@ -186,7 +181,7 @@ export default function Home() {
                                             </div>
 
                                             <div className="space-y-2">
-                                                <Label htmlFor="category">Категория</Label>
+                                                <Label htmlFor="category">{t('category')}</Label>
                                                 <Input
                                                     id="category"
                                                     name="category"
@@ -195,7 +190,7 @@ export default function Home() {
                                             </div>
 
                                             <div className="space-y-2">
-                                                <Label htmlFor="brand">Бренд</Label>
+                                                <Label htmlFor="brand">{t('brand')}</Label>
                                                 <Input
                                                     id="brand"
                                                     name="brand"
@@ -207,7 +202,7 @@ export default function Home() {
                                                 type="submit"
                                                 className="w-full"
                                             >
-                                                Добавить
+                                                {t('save')}
                                             </Button>
                                         </form>
                                     </DialogContent>
@@ -218,10 +213,10 @@ export default function Home() {
                                     <TableHeader>
                                         <TableRow>
                                             <TableHead>ID</TableHead>
-                                            <TableHead>Название</TableHead>
-                                            <TableHead>Категория</TableHead>
-                                            <TableHead>Бренд</TableHead>
-                                            <TableHead>Цена</TableHead>
+                                            <TableHead>{t('name')}</TableHead>
+                                            <TableHead>{t('category')}</TableHead>
+                                            <TableHead>{t('brand')}</TableHead>
+                                            <TableHead>{t('price')}</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>

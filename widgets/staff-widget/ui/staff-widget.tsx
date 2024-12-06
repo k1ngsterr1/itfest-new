@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dialog"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { useUserData } from '@/hooks/useUserData'
+import { useTranslation } from 'react-i18next'
 
 interface Employee {
     id: number
@@ -33,6 +34,7 @@ interface Employee {
 }
 
 export function StaffWidget() {
+    const { t } = useTranslation('staff')
     const { userData: companyName } = useUserData('companyName');
     const [employees, setEmployees] = useState<Employee[]>([])
     const [isOpen, setIsOpen] = useState(false)
@@ -117,7 +119,6 @@ export function StaffWidget() {
             const result = await response.json()
             console.log('Server response after adding employee:', result)
 
-            // Use the Cloudinary URL directly if it starts with cloudinary, otherwise use the backend URL
             const imageUrl = result.image?.startsWith('https://res.cloudinary.com')
                 ? result.image
                 : result.image?.startsWith('http')
@@ -136,7 +137,6 @@ export function StaffWidget() {
             setNewEmployee({ image: '', name: '', companyName: '', salary: '', photo: '' })
         } catch (error) {
             console.error('Error adding employee:', error)
-            // You might want to show an error message to the user here
         }
     }
 
@@ -147,16 +147,16 @@ export function StaffWidget() {
                     <DialogTrigger asChild>
                         <Button>
                             <Plus className="mr-2 h-4 w-4" />
-                            Add Employee
+                            {t("addEmployee")}
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
-                            <DialogTitle>Add New Employee</DialogTitle>
+                            <DialogTitle>{t("addNewEmployee")}</DialogTitle>
                         </DialogHeader>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="avatar">Image</Label>
+                                <Label htmlFor="avatar">{t("image")}</Label>
                                 <div className="flex items-center justify-center w-full">
                                     <label
                                         htmlFor="avatar"
@@ -178,10 +178,10 @@ export function StaffWidget() {
                                             <div className="flex flex-col items-center justify-center w-full">
                                                 <Upload className="w-8 h-8 mb-4 text-gray-500" />
                                                 <p className="mb-2 text-sm text-gray-500">
-                                                    Нажмите для загрузки или перетащите
+                                                    {t("loadPhoto")}
                                                 </p>
                                                 <p className="text-xs text-gray-500">
-                                                    SVG, PNG, JPG или GIF (MAX. 800x400px)
+                                                    {t("dataType")}
                                                 </p>
                                             </div>
                                         )}
@@ -196,7 +196,7 @@ export function StaffWidget() {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">{t("name")}</Label>
                                 <Input
                                     id="name"
                                     name="name"
@@ -206,7 +206,7 @@ export function StaffWidget() {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="companyName">Company Name</Label>
+                                <Label htmlFor="companyName">{t("companyName")}</Label>
                                 <Input
                                     id="companyName"
                                     name="companyName"
@@ -216,7 +216,7 @@ export function StaffWidget() {
                                 />
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="salary">Salary</Label>
+                                <Label htmlFor="salary">{t("salary")}</Label>
                                 <Input
                                     id="salary"
                                     name="salary"
@@ -225,7 +225,7 @@ export function StaffWidget() {
                                     required
                                 />
                             </div>
-                            <Button type="submit" className="w-full">Add Employee</Button>
+                            <Button type="submit" className="w-full">{t("addEmployee")}</Button>
                         </form>
                     </DialogContent>
                 </Dialog>
@@ -234,10 +234,10 @@ export function StaffWidget() {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead>Image</TableHead>
-                            <TableHead>Name</TableHead>
-                            <TableHead>Company Name</TableHead>
-                            <TableHead>Salary</TableHead>
+                            <TableHead>{t("image")}</TableHead>
+                            <TableHead>{t("name")}</TableHead>
+                            <TableHead>{t("companyName")}</TableHead>
+                            <TableHead>{t("salary")}</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>

@@ -1,4 +1,28 @@
 {
+    "staff": {
+        "heading": "Қызметкерлер",
+        "addEmployee": "Қызметкер қосу",
+        "addNewEmployee": "Жаңа қызметкер қосу",
+        "image": "Сурет",
+        "loadPhoto": "Жүктеу үшін басыңыз немесе сүйретіңіз",
+        "dataType": "SVG, PNG, JPG немесе GIF (MAX. 800x400px)",
+        "name": "Аты-жөні",
+        "companyName": "Компания атауы",
+        "salary": "Жалақы"
+    },
+    "products": {
+        "title": "Тауарлар",
+        "addProduct": "Тауар қосу",
+        "photo": "Фото",
+        "loadPhoto": "Жүктеу үшін басыңыз немесе сүйретіп әкеліңіз",
+        "dataType": "SVG, PNG, JPG немесе GIF (МАКС. 800x400px)",
+        "productName": "Тауар атауы",
+        "price": "Баға",
+        "category": "Санат",
+        "brand": "Бренд",
+        "save": "Сақтау",
+        "name": "Атауы"
+    },
     "login": {
         "title": "Кіру",
         "email": "Электрондық пошта",

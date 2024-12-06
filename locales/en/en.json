@@ -1,4 +1,28 @@
 {
+  "staff": {
+    "heading": "Staff",
+    "addEmployee": "Add Employee",
+    "addNewEmployee": "Add New Employee",
+    "image": "Image",
+    "loadPhoto": "Click to download or drag",
+    "dataType": "SVG, PNG, JPG or GIF (MAX. 800x400px)",
+    "name": "Name",
+    "companyName": "Company Name",
+    "salary": "Salary"
+  },
+  "products": {
+    "title": "Products",
+    "addProduct": "Add Product",
+    "photo": "Photo",
+    "loadPhoto": "Click to download or drag",
+    "dataType": "SVG, PNG, JPG or GIF (MAX. 800x400px)",
+    "productName": "Product Name",
+    "price": "Price",
+    "category": "Category",
+    "brand": "Brand",
+    "save": "Save",
+    "name": "Name"
+  },
   "login": {
     "title": "Login",
     "email": "Email",

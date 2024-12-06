@@ -1,4 +1,28 @@
 {
+  "staff": {
+    "heading": "Персонал",
+    "addEmployee": "Добавить сотрудника",
+    "addNewEmployee": "Добавить нового сотрудника",
+    "image": "Изображение",
+    "loadPhoto": "Нажмите для загрузки или перетащите",
+    "dataType": "SVG, PNG, JPG или GIF (МАКС. 800x400px)",
+    "name": "Имя",
+    "companyName": "Название компании",
+    "salary": "Зарплата"
+  },
+  "products": {
+    "title": "Товары",
+    "addProduct": "Добавить товар",
+    "photo": "Фото",
+    "loadPhoto": "Нажмите для загрузки или перетащите",
+    "dataType": "SVG, PNG, JPG или GIF (МАКС. 800x400px)",
+    "productName": "Название товара",
+    "price": "Цена",
+    "category": "Категория",
+    "brand": "Бренд",
+    "save": "Сохранить",
+    "name": "Название"
+  },
   "login": {
     "title": "Вход",
     "email": "Электронная почта",
