@@ -18,6 +18,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import useSocket from "@/hooks/useSocket";
 import { io } from "socket.io-client";
 
+import ultraboost from '@/assets/image.png'
+import classicLeather from '@/assets/image copy.png'
+import phantom from '@/assets/image copy 2.png'
+import techFleece from '@/assets/image copy 3.png'
+import trefoilTee from '@/assets/image copy 4.png'
+
 const brands = ["Nike", "Adidas", "Puma", "Reebok", "Under Armour"];
 
 const categories = ["sneakers", "clothes"];
@@ -38,8 +44,7 @@ const products = [
     brand: "Adidas",
     category: "sneakers",
     price: 179.99,
-    image:
-      "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/3d0933f855c445fea224aad600d85ead_9366/Ultraboost_Light_Shoes_Black_FX8923_01_standard.jpg",
+    image: ultraboost
   },
   {
     id: 3,
@@ -56,8 +61,7 @@ const products = [
     brand: "Reebok",
     category: "sneakers",
     price: 74.99,
-    image:
-      "https://assets.reebok.com/images/w_600,f_auto,q_auto/24043dba0e484434aba3aae80191b9c5_9366/Classic_Leather_Shoes_White_ID2154_01_standard.jpg",
+    image: classicLeather
   },
   {
     id: 5,
@@ -65,8 +69,7 @@ const products = [
     brand: "Under Armour",
     category: "sneakers",
     price: 139.99,
-    image:
-      "https://underarmour.scene7.com/is/image/Underarmour/3024152-002_DEFAULT?rp=standard-0pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640",
+    image: phantom
   },
   {
     id: 6,
@@ -74,8 +77,7 @@ const products = [
     brand: "Nike",
     category: "clothes",
     price: 109.99,
-    image:
-      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/7bac6eaa-9de6-4c04-9baa-9fc5c8778fad/sportswear-tech-fleece-mens-full-zip-hoodie-5ZtTtk.png",
+    image: techFleece
   },
   {
     id: 7,
@@ -83,8 +85,7 @@ const products = [
     brand: "Adidas",
     category: "clothes",
     price: 29.99,
-    image:
-      "https://assets.adidas.com/images/w_600,f_auto,q_auto/fb35807c75bb4185ba60aae800f3f4cf_9366/Trefoil_T-Shirt_Black_GN3462_01_laydown.jpg",
+    image: trefoilTee
   },
   {
     id: 8,
@@ -94,24 +95,6 @@ const products = [
     price: 49.99,
     image:
       "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/586748/01/mod01/fnd/IND/fmt/png/Essentials-Logo-Men's-Sweatpants",
-  },
-  {
-    id: 9,
-    name: "Vector Jacket",
-    brand: "Reebok",
-    category: "clothes",
-    price: 69.99,
-    image:
-      "https://assets.reebok.com/images/w_600,f_auto,q_auto/cd34290e1b57479399f3acf301607408_9366/Classics_Vector_Track_Jacket_Black_FJ3172_01_standard.jpg",
-  },
-  {
-    id: 10,
-    name: "Rival Fleece Shorts",
-    brand: "Under Armour",
-    category: "clothes",
-    price: 39.99,
-    image:
-      "https://underarmour.scene7.com/is/image/Underarmour/1361631-001_DEFAULT?rp=standard-0pad|gridTileDesktop&scl=1&fmt=jpg&qlt=50&resMode=sharp2&cache=on,on&bgc=F0F0F0&wid=512&hei=640",
   },
 ];
 
